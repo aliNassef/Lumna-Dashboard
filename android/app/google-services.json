@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "970520097045",
+    "project_id": "safi-3d6e2",
+    "storage_bucket": "safi-3d6e2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970520097045:android:20d53916181d8b501af91c",
+        "android_client_info": {
+          "package_name": "com.example.lumna_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNFbTHDhHexab3aQ2ZV9a9yvPlmjy6hKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970520097045:android:2bc6c99e2ed4b5551af91c",
+        "android_client_info": {
+          "package_name": "com.example.safi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNFbTHDhHexab3aQ2ZV9a9yvPlmjy6hKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
