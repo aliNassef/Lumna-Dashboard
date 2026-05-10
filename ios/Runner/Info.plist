@@ -74,5 +74,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MBXAccessToken</key>
+<string>pk.eyJ1IjoiYWxpLW5hc3NlZiIsImEiOiJjbW94NndiOTkwMXBuMnNzZHZ0aTVpZHppIn0.-VfAJu3mtd7qDd9GSHRDbg</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>To Get User Location For Shipping</string>
 </dict>
 </plist>

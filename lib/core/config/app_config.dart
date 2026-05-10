@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
+    show MapboxOptions;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../firebase_options.dart';
@@ -35,7 +37,6 @@ class AppConfig {
 
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
-
     await EasyLocalization.ensureInitialized();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -53,7 +54,9 @@ class AppConfig {
     await CacheHelper.init();
     await injector<NotificationService>().init();
     await injector<RemoteNotificationService>().init();
-
+    MapboxOptions.setAccessToken(
+      'pk.eyJ1IjoiYWxpLW5hc3NlZiIsImEiOiJjbW94NndiOTkwMXBuMnNzZHZ0aTVpZHppIn0.-VfAJu3mtd7qDd9GSHRDbg',
+    );
     DeepLinkService.instance.init();
 
     Bloc.observer = CustomBlocObserver();
