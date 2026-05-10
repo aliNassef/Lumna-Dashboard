@@ -4,10 +4,11 @@ import '../../../../core/extensions/order_status.dart';
 import '../models/order_details_model.dart';
 import '../models/order_model.dart';
 import '../models/recent_order_model.dart';
+import 'package:rxdart/rxdart.dart';
 
 abstract interface class OrdersRemoteDataSource {
   Future<List<RecentOrderModel>> getRecentOrders();
-  Future<List<OrderModel>> getOrders();
+  Stream<List<OrderModel>> getOrders();
   Future<OrderDetailsModel> getOrderDetails(String orderId);
   Future<void> updateOrderStatus(String orderId, OrderStatus status);
 }
@@ -33,7 +34,26 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   }
 
   @override
-  Future<List<OrderModel>> getOrders() async {
+  Stream<List<OrderModel>> getOrders() {
+    return Rx.merge<List<Map<String, dynamic>>>([
+      _database.stream(
+        path: Endpoints.orders,
+        primaryKey: ['id'],
+      ),
+      _database.stream(
+        path: Endpoints.orderItems,
+        primaryKey: ['id'],
+      ),
+      _database.stream(
+        path: Endpoints.profiles,
+        primaryKey: ['id'],
+      ),
+    ]).debounceTime(const Duration(milliseconds: 300)).asyncMap((_) {
+      return _fetchOrders();
+    });
+  }
+
+  Future<List<OrderModel>> _fetchOrders() async {
     final response = await _database.get(
       path: Endpoints.orders,
       columns:

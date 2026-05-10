@@ -10,7 +10,7 @@ import '../models/recent_order_model.dart';
 
 abstract interface class OrdersRepo {
   Future<Either<Failure, List<RecentOrderModel>>> getRecentOrders();
-  Future<Either<Failure, List<OrderModel>>> getOrders();
+  Stream<Either<Failure, List<OrderModel>>> getOrders();
   Future<Either<Failure, OrderDetailsModel>> getOrderDetails(String orderId);
   Future<Either<Failure, void>> updateOrderStatus(
     String orderId,
@@ -34,12 +34,13 @@ class OrdersRepoImpl implements OrdersRepo {
   }
 
   @override
-  Future<Either<Failure, List<OrderModel>>> getOrders() async {
+  Stream<Either<Failure, List<OrderModel>>> getOrders() async* {
     try {
-      final orders = await _remoteDataSource.getOrders();
-      return Right(orders);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+      await for (final orders in _remoteDataSource.getOrders()) {
+        yield Right(orders);
+      }
+    } catch (e) {
+      yield Left(Failure(errMessage: e.toString()));
     }
   }
 

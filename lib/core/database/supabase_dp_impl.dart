@@ -185,6 +185,35 @@ class SupabaseDpImpl implements Database {
       throw ServerException('Unexpected error: $e');
     }
   }
+
+  @override
+  Stream<List<Map<String, dynamic>>> stream({
+    required String path,
+    List<String> primaryKey = const ['id'],
+    String? filterColumn,
+    String columns = '*',
+
+    dynamic filterValue,
+    String? orderBy,
+    bool ascending = false,
+  }) {
+    try {
+      final query = _client.from(path).stream(primaryKey: primaryKey);
+
+      var filtered = filterColumn != null
+          ? query.eq(filterColumn, filterValue)
+          : query;
+
+      if (orderBy != null) {
+        filtered = filtered.order(orderBy, ascending: ascending);
+      }
+      return filtered;
+    } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    } catch (e) {
+      throw ServerException('Unexpected error: $e');
+    }
+  }
 }
 
 //! old get method

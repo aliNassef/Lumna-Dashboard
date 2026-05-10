@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:lumna_admin/core/extensions/order_status.dart';
 
+import '../../../../../core/exceptions/failure.dart';
 import '../../../data/models/order_model.dart';
 import '../../../data/repo/orders_repo.dart';
 import 'orders_state.dart';
@@ -8,6 +12,7 @@ import 'orders_state.dart';
 class OrdersCubit extends Cubit<OrderState> {
   OrdersCubit({required this.ordersRepo}) : super(const OrderState());
   final OrdersRepo ordersRepo;
+  StreamSubscription<Either<Failure, List<OrderModel>>>? _ordersSub;
 
   void getRecentOrders() async {
     emit(
@@ -32,28 +37,36 @@ class OrdersCubit extends Cubit<OrderState> {
     );
   }
 
-  void getOrders() async {
+  void getOrdersStream() {
     emit(
       state.copyWith(
         status: OrderStates.loadingOrders,
       ),
     );
-    final ordersOrFailure = await ordersRepo.getOrders();
-    ordersOrFailure.fold(
-      (failure) => emit(
-        state.copyWith(
-          status: OrderStates.failureGetOrders,
-          failure: failure,
-        ),
-      ),
-      (orders) => emit(
-        state.copyWith(
-          status: OrderStates.successGetOrders,
-          orders: orders,
-          filteredOrders: orders,
-        ),
-      ),
-    );
+
+    _ordersSub?.cancel();
+
+    _ordersSub = ordersRepo.getOrders().listen((result) {
+      result.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              status: OrderStates.failureGetOrders,
+              failure: failure,
+            ),
+          );
+        },
+        (orders) {
+          emit(
+            state.copyWith(
+              status: OrderStates.successGetOrders,
+              orders: orders,
+              filteredOrders: orders,
+            ),
+          );
+        },
+      );
+    });
   }
 
   void filterOrders(OrderStatus status) async {
@@ -142,5 +155,11 @@ class OrdersCubit extends Cubit<OrderState> {
         ),
       ),
     );
+  }
+
+  @override
+  Future<void> close() {
+    _ordersSub?.cancel();
+    return super.close();
   }
 }

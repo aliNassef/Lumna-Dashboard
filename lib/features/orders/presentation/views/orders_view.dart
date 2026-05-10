@@ -20,7 +20,7 @@ class OrdersView extends StatelessWidget {
         actionPadding: 20,
       ),
       body: BlocProvider(
-        create: (context) => injector<OrdersCubit>()..getOrders(),
+        create: (context) => injector<OrdersCubit>()..getOrdersStream(),
         child: const SafeArea(
           child: OrdersViewBody(),
         ),
