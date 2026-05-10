@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';
@@ -56,7 +58,7 @@ class CategoryCard extends StatelessWidget {
 
             // Description
             Text(
-              'Seating, tables, beds, and storage solutions for modern living spaces.',
+              LocaleKeys.category_demo_description.tr(),
               style: context.typography.regular14.copyWith(
                 color: context.colors.onSurfaceVariant,
               ),
@@ -72,7 +74,7 @@ class CategoryCard extends StatelessWidget {
                 ),
                 const Gap(Spacing.medium),
                 Text(
-                  '${category.productCount} Products',
+                  '${category.productCount} ${LocaleKeys.products_count_label.tr()}',
                   style: context.typography.bold14.copyWith(
                     color: context.colors.primary,
                   ),

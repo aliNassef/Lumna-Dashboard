@@ -24,7 +24,7 @@ class ItemsSummarySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: .start,
         children: [
-          Text('Items Summary', style: context.typography.bold20),
+          Text(LocaleKeys.section_items_summary.tr(), style: context.typography.bold20),
           const Gap(20),
 
           // Item List

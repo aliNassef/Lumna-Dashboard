@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import 'package:lumna_admin/core/utils/app_assets.dart';
 
 import '../../../../core/extensions/order_status.dart';
@@ -110,7 +112,7 @@ class OrderDetailsModel extends Equatable {
   }
 
   static String _resolveCustomerName(Map<String, dynamic>? profile) {
-    return _clean(profile?['full_name']) ?? 'Unknown Customer';
+    return _clean(profile?['full_name']) ?? LocaleKeys.unknown_customer.tr();
   }
 
   static Map<String, dynamic>? _resolveAddressMap(dynamic value) {

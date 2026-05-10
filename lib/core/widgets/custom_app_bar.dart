@@ -18,7 +18,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      actionsPadding: EdgeInsets.only(right: actionPadding ?? 0),
+      actionsPadding: EdgeInsetsDirectional.only(end: actionPadding ?? 0),
       leadingWidth: 40,
       leading: showBackButton
           ? BackButton(

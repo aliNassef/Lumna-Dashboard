@@ -27,7 +27,7 @@ class DeletingProductButtonListener extends StatelessWidget {
         }
         if (state.status.isDeleteProductSuccess) {
           context.showToast(
-            text: 'Product deleted successfully',
+            text: LocaleKeys.product_deleted_successfully.tr(),
             backgroundColor: context.colors.primary,
           );
           context.popUntil(LayoutView.routeName);

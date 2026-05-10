@@ -44,7 +44,7 @@ class UpdatingProductBuuttonListener extends StatelessWidget {
 
         if (state.status.isUpdateProductSuccess) {
           context.showToast(
-            text: 'Product updated successfully',
+            text: LocaleKeys.product_updated_successfully.tr(),
             backgroundColor: context.colors.primary,
           );
           context.popUntil(LayoutView.routeName);

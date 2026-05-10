@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 /// Represents a single order line item returned from Supabase.
 class OrderItemModel extends Equatable {
@@ -45,7 +47,7 @@ class OrderItemModel extends Equatable {
       fallbackKeys: const ['name'],
     );
     if (title == null || title.trim().isEmpty) {
-      return 'Unknown Item';
+      return LocaleKeys.unknown_item.tr();
     }
     return title;
   }

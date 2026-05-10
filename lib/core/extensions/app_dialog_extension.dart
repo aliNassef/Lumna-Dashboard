@@ -1,13 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import '../extensions/color_extensions.dart';
 import '../extensions/typography_extension.dart';
-import '../navigation/app_navigation.dart';
 import '../utils/spacer.dart';
 import '../utils/shape.dart';
+import '../widgets/coming_soon_dialog.dart';
 import '../widgets/custom_button.dart';
+import '../widgets/language_bottom_sheet.dart';
 
 extension DialogExtension on BuildContext {
   void showAppDialog({
@@ -81,7 +84,7 @@ extension DialogExtension on BuildContext {
               const Gap(Spacing.large),
 
               CustomButton(
-                text: buttonText ?? (isSuccess ? 'Continue' : 'Dismiss'),
+                text: buttonText ?? (isSuccess ? LocaleKeys.continue_action.tr() : LocaleKeys.dismiss.tr()),
                 backgroundColor: isSuccess
                     ? Colors.green
                     : context.colors.error,
@@ -200,67 +203,13 @@ extension DialogExtension on BuildContext {
       builder: (_) => const ComingSoonDialog(),
     );
   }
-}
 
-class ComingSoonDialog extends StatelessWidget {
-  const ComingSoonDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final primaryGreen = context.colors.primary;
-
-    return Dialog(
-      // Using Shape.extraLarge (22.0.r) for the dialog corners
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Shape.extraLarge),
-      ),
-      elevation: 0,
-      backgroundColor: context.colors.onPrimary,
-      child: Padding(
-        // Using Spacing.extraLarge (16.0) for internal padding
-        padding: const EdgeInsets.all(Spacing.extraLarge),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Gap(Spacing.large),
-            // Illustrative Icon
-            Container(
-              padding: const EdgeInsets.all(Spacing.extraLarge),
-              decoration: BoxDecoration(
-                color: context.colors.onPrimary,
-                borderRadius: BorderRadius.circular(Shape.medium),
-              ),
-              child: Icon(
-                Icons.rocket_launch_outlined,
-                color: primaryGreen,
-                size: 48,
-              ),
-            ),
-            const Gap(Spacing.extraLarge),
-            // Text Content
-            Text(
-              'Coming Soon!',
-              style: context.typography.bold24.copyWith(color: primaryGreen),
-            ),
-            const Gap(Spacing.medium),
-            Text(
-              "We're working hard to bring this feature to your dashboard. Stay tuned for updates!",
-              textAlign: TextAlign.center,
-              style: context.typography.regular14.copyWith(
-                color: Colors.grey[600],
-              ),
-            ),
-            const Gap(
-              Spacing.extraLarge,
-            ),
-            // Action Button
-            CustomButton(
-              text: 'GOT IT',
-              onPressed: () => context.pop(),
-              radius: Shape.large,
-            ),
-          ],
-        ),
+  void showLangSheet() {
+    showModalBottomSheet(
+      context: this,
+      backgroundColor: colors.onPrimary,
+      builder: (context) => const SafeArea(
+        child: LanguageBottomSheet(),
       ),
     );
   }

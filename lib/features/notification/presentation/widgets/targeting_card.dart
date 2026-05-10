@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lumna_admin/core/extensions/color_extensions.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/utils/shape.dart';
@@ -27,7 +29,7 @@ class TargetingCard extends StatelessWidget {
               Icon(Icons.group_outlined, color: context.colors.primary),
               const Gap(Spacing.medium),
               Text(
-                'Targeting',
+                LocaleKeys.section_targeting.tr(),
                 style: context.typography.bold24.copyWith(
                   color: context.colors.primary,
                 ),
@@ -38,7 +40,7 @@ class TargetingCard extends StatelessWidget {
 
           // Label
           Text(
-            'TARGET AUDIENCE',
+            LocaleKeys.label_target_audience.tr(),
             style: context.typography.bold12.copyWith(
               color: Colors.grey[800],
               letterSpacing: 0.5,
@@ -59,7 +61,7 @@ class TargetingCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('All Users', style: context.typography.regular16),
+                Text(LocaleKeys.all_users.tr(), style: context.typography.regular16),
                 // const Icon(Icons.expand_more, color: Colors.grey),
               ],
             ),
@@ -70,7 +72,7 @@ class TargetingCard extends StatelessWidget {
           const TargetingSection(),
           const Gap(Spacing.medium),
           Text(
-            'Broadcast to all users is enabled in this version.',
+            LocaleKeys.broadcast_all_users_info.tr(),
             style: context.typography.regular12.copyWith(
               color: context.colors.onSurfaceVariant,
             ),

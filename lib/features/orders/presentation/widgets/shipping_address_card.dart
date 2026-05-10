@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lumna_admin/core/extensions/color_extensions.dart';
 import 'package:lumna_admin/core/extensions/mediaquery_size.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/utils/spacer.dart';
@@ -26,7 +28,7 @@ class ShippingAddressCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'SHIPPING ADDRESS',
+            LocaleKeys.section_shipping_address.tr(),
             style: context.typography.bold14.copyWith(
               color: Colors.grey[800],
               letterSpacing: 0.5,

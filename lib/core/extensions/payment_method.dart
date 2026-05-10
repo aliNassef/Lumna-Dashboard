@@ -1,3 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
+
 enum PaymentMethod {
   cash,
   credit
@@ -19,9 +22,9 @@ extension PaymentMethodExtension on PaymentMethod {
   String get value {
     switch (this) {
       case PaymentMethod.cash:
-        return 'cash';
+        return LocaleKeys.payment_method_cash.tr();
       case PaymentMethod.credit:
-        return 'credit';
+        return LocaleKeys.payment_method_credit.tr();
     }
   }
 }

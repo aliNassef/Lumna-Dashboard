@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:lumna_admin/core/extensions/order_status.dart';
 import 'package:lumna_admin/core/extensions/date_time_extension.dart';
 import 'package:lumna_admin/core/navigation/navigation.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/color_extensions.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
@@ -83,7 +85,7 @@ class OrderCardItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${order.itemsCount} Items',
+                    '${order.itemsCount} ${LocaleKeys.items_label.tr()}',
                     style: context.typography.regular14,
                   ),
                 ],
@@ -146,7 +148,7 @@ class OrderCardItem extends StatelessWidget {
                     _goToOrderDetails(context);
                   },
                   child: Text(
-                    'View Order  ->',
+                    LocaleKeys.view_order.tr(),
                     style: context.typography.semiBold16.copyWith(
                       color: context.colors.primary,
                     ),

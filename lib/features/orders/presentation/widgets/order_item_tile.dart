@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import 'package:lumna_admin/core/widgets/custom_network_image.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
@@ -59,7 +61,7 @@ class OrderItemTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'Qty: ${item.quantity}',
+                  '${LocaleKeys.qty_label.tr()}${item.quantity}',
                   style: context.typography.regular14.copyWith(
                     color: Colors.grey,
                   ),

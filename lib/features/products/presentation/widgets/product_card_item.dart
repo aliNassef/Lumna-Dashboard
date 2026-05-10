@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/navigation/navigation.dart';
 import '../../data/models/product_args.dart';
@@ -24,7 +26,7 @@ class ProductCardItem extends StatelessWidget {
     final imageUrl = product.images.isNotEmpty
         ? product.images.first
         : AppNetworkImage.dummy;
-    final statusLabel = product.isActive ? 'ACTIVE' : 'INACTIVE';
+    final statusLabel = product.isActive ? LocaleKeys.badge_active.tr() : LocaleKeys.badge_inactive.tr();
     final statusColor = product.isActive ? Colors.green : Colors.red;
     final displayPrice = product.salePrice ?? product.price;
 
@@ -112,7 +114,7 @@ class ProductCardItem extends StatelessWidget {
                               color: Colors.grey[600],
                             ),
                             children: [
-                              const TextSpan(text: 'Stock: '),
+                              TextSpan(text: LocaleKeys.stock_label.tr()),
                               TextSpan(
                                 text: product.stockQuantity.toString(),
                                 style: context.typography.bold14.copyWith(

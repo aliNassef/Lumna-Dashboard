@@ -51,7 +51,7 @@ class PricingInventoryCard extends StatelessWidget {
 
             CustomTextFormField(
               controller: salePrice,
-              hintText: '0.00',
+              hintText: LocaleKeys.hint_price_placeholder.tr(),
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
@@ -65,7 +65,7 @@ class PricingInventoryCard extends StatelessWidget {
 
             CustomTextFormField(
               controller: price,
-              hintText: '0.00',
+              hintText: LocaleKeys.hint_price_placeholder.tr(),
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
@@ -79,7 +79,7 @@ class PricingInventoryCard extends StatelessWidget {
 
             CustomTextFormField(
               controller: stockQuantity,
-              hintText: '0',
+              hintText: LocaleKeys.hint_stock_placeholder.tr(),
               keyboardType: TextInputType.number,
               validator: Validators.fieldIsRequired,
             ),

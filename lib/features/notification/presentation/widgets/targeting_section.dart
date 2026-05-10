@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lumna_admin/core/extensions/app_dialog_extension.dart';
 import 'package:lumna_admin/core/extensions/color_extensions.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/utils/shape.dart';
@@ -17,16 +19,16 @@ class TargetingSection extends StatelessWidget {
     return Column(
       children: [
         _SelectionTile(
-          title: 'Push Notification',
-          subtitle: 'MOBILE',
+          title: LocaleKeys.notification_type_push.tr(),
+          subtitle: LocaleKeys.notification_type_mobile.tr(),
           isSelected: 0 == _currentIndex,
           primaryColor: context.colors.primary,
           onTap: () {},
         ),
         const Gap(Spacing.medium),
         _SelectionTile(
-          title: 'Email Notification',
-          subtitle: 'DIRECT INBOX',
+          title: LocaleKeys.notification_type_email.tr(),
+          subtitle: LocaleKeys.notification_type_inbox.tr(),
           isSelected: 1 == _currentIndex,
           primaryColor: context.colors.primary,
           onTap: () {

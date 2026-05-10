@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:lumna_admin/core/extensions/app_dialog_extension.dart';
 import 'package:lumna_admin/core/extensions/color_extensions.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import 'package:lumna_admin/core/widgets/custom_button.dart';
 import 'package:lumna_admin/core/widgets/custom_form_field.dart';
 
@@ -40,7 +42,7 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
       listener: (context, state) {
         if (state.status.isSuccess) {
           context.showToast(
-            text: 'Notification sent successfully',
+            text: LocaleKeys.notification_sent_successfully.tr(),
             backgroundColor: Colors.green,
           );
           _titleController.clear();
@@ -70,41 +72,41 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Notification Details',
+                      LocaleKeys.section_notification_details.tr(),
                       style: context.typography.bold24.copyWith(
                         color: context.colors.primary,
                       ),
                     ),
                     const Gap(24),
                     Text(
-                      'NOTIFICATION TITLE',
+                      LocaleKeys.label_notification_title.tr(),
                       style: context.typography.semiBold12.copyWith(
                         color: context.colors.onTertiary,
                       ),
                     ),
                     const Gap(Spacing.small),
                     CustomTextFormField(
-                      hintText: 'enter title',
+                      hintText: LocaleKeys.hint_enter_title.tr(),
                       controller: _titleController,
                       validator: _validateRequired,
                     ),
                     const Gap(24),
                     Text(
-                      'MESSAGE BODY',
+                      LocaleKeys.label_message_body.tr(),
                       style: context.typography.semiBold12.copyWith(
                         color: context.colors.onTertiary,
                       ),
                     ),
                     const Gap(Spacing.small),
                     CustomTextFormField(
-                      hintText: 'enter message body',
+                      hintText: LocaleKeys.hint_enter_message_body.tr(),
                       controller: _bodyController,
                       validator: _validateRequired,
                       maxLines: 4,
                     ),
                     const Gap(24),
                     Text(
-                      'UPLOAD IMAGE',
+                      LocaleKeys.label_upload_image.tr(),
                       style: context.typography.semiBold12.copyWith(
                         color: context.colors.onTertiary,
                       ),
@@ -121,7 +123,7 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
                     ),
                     const Gap(Spacing.small),
                     Text(
-                      'Image preview is optional and is not sent in v1.',
+                      LocaleKeys.image_preview_optional.tr(),
                       style: context.typography.regular12.copyWith(
                         color: context.colors.onSurfaceVariant,
                       ),
@@ -135,8 +137,8 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
               const Gap(Spacing.extraLarge),
               CustomButton(
                 text: state.status.isSending
-                    ? 'Broadcasting...'
-                    : 'Broadcast Notification',
+                    ? LocaleKeys.broadcasting.tr()
+                    : LocaleKeys.broadcast_notification.tr(),
                 isDisabled: state.status.isSending,
                 onPressed: state.status.isSending ? null : _submit,
                 icon: Icon(
@@ -154,7 +156,7 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
 
   String? _validateRequired(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'This field is required';
+      return LocaleKeys.this_field_is_required.tr();
     }
     return null;
   }

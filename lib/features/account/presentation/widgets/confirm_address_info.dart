@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:lumna_admin/core/extensions/app_dialog_extension.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import 'package:lumna_admin/features/account/data/models/location_model.dart';
 
 import '../../../../core/navigation/app_navigation.dart';
@@ -15,7 +17,7 @@ import '../controller/address_cubit/address_cubit.dart';
 class ConfirmAddressInfo extends StatelessWidget {
   const ConfirmAddressInfo({super.key});
 
-  static const String _fallback = 'Not available';
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class ConfirmAddressInfo extends StatelessWidget {
                 ),
                 const SizedBox(width: Spacing.large),
                 Text(
-                  'Loading address...',
+                  LocaleKeys.loading_address.tr(),
                   style: context.typography.medium14.copyWith(
                     color: context.colors.onSurface,
                   ),
@@ -82,9 +84,9 @@ class ConfirmAddressInfo extends StatelessWidget {
                 spacing: Spacing.large,
                 runSpacing: Spacing.medium,
                 children: [
-                  _AddressInfoItem(label: 'City', value: place.city),
-                  _AddressInfoItem(label: 'Country', value: place.country),
-                  _AddressInfoItem(label: 'Zip code', value: place.zip),
+                  _AddressInfoItem(label: LocaleKeys.address_city.tr(), value: place.city),
+                  _AddressInfoItem(label: LocaleKeys.address_country.tr(), value: place.country),
+                  _AddressInfoItem(label: LocaleKeys.address_zip_code.tr(), value: place.zip),
                 ],
               ),
               const Gap(Spacing.medium),
@@ -92,7 +94,7 @@ class ConfirmAddressInfo extends StatelessWidget {
                 listener: (context, state) {
                   if (state is AddStoreLocationSuccess) {
                     context.showToast(
-                      text: 'Add Store Location',
+                      text: LocaleKeys.add_store_location_msg.tr(),
                       backgroundColor: context.colors.primary,
                     );
                     context.pop();
@@ -109,7 +111,7 @@ class ConfirmAddressInfo extends StatelessWidget {
                   }
                 },
                 child: CustomButton(
-                  text: 'Confirm',
+                  text: LocaleKeys.confirm.tr(),
                   onPressed: () {
                     context.read<AddressCubit>().addStoreLocation(
                       LocationModel(storeLng: place.lng, storeLat: place.lat),
@@ -126,7 +128,7 @@ class ConfirmAddressInfo extends StatelessWidget {
 
   static String _valueOrFallback(String? value) {
     final trimmed = value?.trim();
-    return trimmed == null || trimmed.isEmpty ? _fallback : trimmed;
+    return trimmed == null || trimmed.isEmpty ? LocaleKeys.not_available.tr() : trimmed;
   }
 }
 

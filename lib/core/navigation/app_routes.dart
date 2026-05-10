@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import '../../features/account/presentation/views/map_location_view.dart';
 import '../../features/notification/presentation/view/send_notification_view.dart';
 import '../../features/orders/presentation/views/order_details_view.dart';
@@ -51,7 +53,7 @@ class AppRouter {
         page = EditProductView(productArgs: productArgs);
         break;
       default:
-        page = const Scaffold(body: Center(child: Text('Page not found')));
+        page = Scaffold(body: Center(child: Text(LocaleKeys.page_not_found.tr())));
     }
 
     return PageRouteBuilder(

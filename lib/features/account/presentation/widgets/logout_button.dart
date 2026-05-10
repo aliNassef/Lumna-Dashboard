@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/app_dialog_extension.dart';
 import '../../../../core/extensions/color_extensions.dart';
@@ -26,7 +28,7 @@ class LogoutButton extends StatelessWidget {
         if (state.status.isLogoutFailure) {
           context.pop();
           context.showToast(
-            text: state.failure?.errMessage ?? 'Failed to logout',
+            text: state.failure?.errMessage ?? LocaleKeys.failed_to_logout.tr(),
             backgroundColor: context.colors.error,
           );
         }
@@ -35,7 +37,7 @@ class LogoutButton extends StatelessWidget {
         }
       },
       child: CustomButton(
-        text: 'Logout',
+        text: LocaleKeys.logout.tr(),
         backgroundColor: context.colors.onError,
         textColor: context.colors.error,
         onPressed: () {

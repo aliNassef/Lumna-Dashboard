@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/order_status.dart';
 
 class RecentOrderModel extends Equatable {
@@ -24,7 +26,7 @@ class RecentOrderModel extends Equatable {
     return RecentOrderModel(
       id: map['id'],
       customerName: customerName == null || customerName.trim().isEmpty
-          ? 'Unknown Customer'
+          ? LocaleKeys.unknown_customer.tr()
           : customerName,
       customerImage: customerImage,
       date: DateTime.parse(map['created_at']),
