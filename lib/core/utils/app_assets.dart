@@ -3,6 +3,7 @@
 abstract class AppAssets {
   static const String googleIcon = 'assets/icons/google_icon.svg';
   static const String shopBannerImage = 'assets/images/shop_banner.jpg';
+  static const String markerIcon = 'assets/images/custom-icon.png';
 }
 
 abstract class AppNetworkImage {

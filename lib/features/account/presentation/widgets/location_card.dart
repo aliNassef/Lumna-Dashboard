@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';
+import '../../../../core/navigation/app_navigation.dart';
 import '../../../../core/utils/shape.dart';
 import '../../../../core/utils/spacer.dart';
+import '../views/map_location_view.dart';
 import 'preference_tile.dart';
 
 class LocationCard extends StatelessWidget {
@@ -38,7 +40,9 @@ class LocationCard extends StatelessWidget {
           child: PreferenceTile(
             icon: Icons.location_on_outlined,
             title: 'Manage Store Location',
-            onTap: () {},
+            onTap: () {
+              context.pushNamed(MapLocationView.routeName);
+            },
           ),
         ),
       ],

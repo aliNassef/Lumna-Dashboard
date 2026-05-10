@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../features/account/presentation/views/map_location_view.dart';
 import '../../features/notification/presentation/view/send_notification_view.dart';
 import '../../features/orders/presentation/views/order_details_view.dart';
 import '../../features/products/data/models/product_args.dart';
@@ -33,6 +34,9 @@ class AppRouter {
         break;
       case SendNotificationView.routeName:
         page = const SendNotificationView();
+        break;
+      case MapLocationView.routeName:
+        page = const MapLocationView();
         break;
       case OrderDetailsView.routeName:
         final data = navArgs.data as Map;

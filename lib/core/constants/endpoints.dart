@@ -13,10 +13,9 @@ abstract class Endpoints {
 
   static const String productsWithStats = 'products_with_stats';
   static const String cartDetails = 'cart_details';
-  
+  static const String storeSettings = 'store_settings';
+
   static const String getDashboardSummary = 'get_dashboard_summary';
-
-
 
   static const String bucketAvatars = 'avatars';
   static const String bucketProducts = 'products';

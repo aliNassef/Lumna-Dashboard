@@ -1,5 +1,13 @@
+import 'package:dio/dio.dart';
+import 'package:lumna_admin/core/services/location/location_service_impl.dart';
+import 'package:lumna_admin/core/services/location/map_service.dart';
+import 'package:lumna_admin/features/account/presentation/controller/address_cubit/address_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../features/account/data/datasource/location_remote_datasource.dart';
+import '../../features/account/data/repo/location_repo.dart';
+import '../services/location/location_service.dart';
+import '../services/location/map_service_impl.dart';
 import 'di.dart';
 
 final GetIt injector = GetIt.instance;
@@ -23,6 +31,13 @@ Future<void> _setupAccountFeature() async {
     ),
   );
 
+  injector.registerFactory<AddressCubit>(
+    () => AddressCubit(
+      locationRepo: injector<LocationRepo>(),
+      locationService: injector<LocationService>(),
+      mapService: injector<MapService>(),
+    ),
+  );
   injector.registerLazySingleton<AccountRepo>(
     () => AccountRepoImpl(
       injector<AccountRemoteDataSource>(),
@@ -33,6 +48,18 @@ Future<void> _setupAccountFeature() async {
     () => AccountRemoteDataSourceImpl(
       database: injector<Database>(),
       authService: injector<AuthService>(),
+    ),
+  );
+
+  injector.registerLazySingleton<LocationRepo>(
+    () => LocationRepoImpl(
+      injector<LocationRemoteDataSource>(),
+    ),
+  );
+
+  injector.registerLazySingleton<LocationRemoteDataSource>(
+    () => LocationRemoteDataSourceImpl(
+      injector<Database>(),
     ),
   );
 }
@@ -180,7 +207,8 @@ Future<void> _setupExternal() async {
       supabaseClient: injector<SupabaseClient>(),
     ),
   );
-
+  injector.registerLazySingleton<LocationService>(() => LocationServiceImpl());
+  injector.registerLazySingleton<MapService>(() => MapServiceImpl(Dio()));
   injector.registerLazySingleton<SupabaseClient>(
     () => Supabase.instance.client,
   );
