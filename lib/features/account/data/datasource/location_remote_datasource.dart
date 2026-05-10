@@ -13,7 +13,6 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
 
   @override
   Future<void> addStoreLocation(LocationModel location) async {
-    // todo: add it to database
     await Future.wait([
       _database.upsert(
         path: 'store_settings',

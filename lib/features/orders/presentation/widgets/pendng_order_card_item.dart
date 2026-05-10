@@ -150,7 +150,7 @@ class PendingOrderCardItem extends StatelessWidget {
                   onPressed: () {
                     context.read<OrdersCubit>().updateOrderStatus(
                       order.id,
-                      OrderStatus.confirmed,
+                      OrderStatus.processing,
                     );
                   },
                 ),

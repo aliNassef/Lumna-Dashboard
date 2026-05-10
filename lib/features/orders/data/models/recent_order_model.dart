@@ -49,7 +49,7 @@ final List<RecentOrderModel> dummyRecentOrders = [
     customerName: 'Sara Mahmoud',
     customerImage: 'https://randomuser.me/api/portraits/women/2.jpg',
     date: DateTime.now().subtract(const Duration(hours: 5)),
-    status: OrderStatus.confirmed,
+    status: OrderStatus.processing,
   ),
   RecentOrderModel(
     id: 'ORD-003',

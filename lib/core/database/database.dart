@@ -48,7 +48,7 @@ abstract interface class Database {
     Map<String, dynamic> params = const {},
   });
 
-  // todo: adding stram get data
+ 
   Stream<List<Map<String, dynamic>>> stream({
     required String path,
     List<String> primaryKey = const ['id'],

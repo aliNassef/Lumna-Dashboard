@@ -3,20 +3,17 @@ import 'package:flutter/material.dart';
 enum OrderStatus {
   all,
   pending,
-  confirmed,
   processing,
   shipped,
   delivered,
   cancelled,
-  refunded
+  refunded,
   ;
 
   static OrderStatus fromValue(String s) {
     switch (s) {
       case 'Pending':
         return OrderStatus.pending;
-      case 'Confirmed':
-        return OrderStatus.confirmed;
       case 'Processing':
         return OrderStatus.processing;
       case 'Shipped':
@@ -38,8 +35,6 @@ extension OrderStatusExtension on OrderStatus {
     switch (this) {
       case OrderStatus.pending:
         return 'Pending';
-      case OrderStatus.confirmed:
-        return 'Confirmed';
       case OrderStatus.processing:
         return 'Processing';
       case OrderStatus.shipped:
@@ -59,8 +54,6 @@ extension OrderStatusExtension on OrderStatus {
     switch (this) {
       case OrderStatus.pending:
         return const Color(0xFFFFF3E0);
-      case OrderStatus.confirmed:
-        return const Color(0xFFE3F2FD);
       case OrderStatus.processing:
         return const Color(0xFFEDE7F6);
       case OrderStatus.shipped:
@@ -80,8 +73,6 @@ extension OrderStatusExtension on OrderStatus {
     switch (this) {
       case OrderStatus.pending:
         return const Color(0xFFEF6C00);
-      case OrderStatus.confirmed:
-        return const Color(0xFF1565C0);
       case OrderStatus.processing:
         return const Color(0xFF5E35B1);
       case OrderStatus.shipped:
