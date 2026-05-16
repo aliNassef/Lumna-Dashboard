@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import '../../features/account/presentation/views/map_location_view.dart';
 import '../../features/notification/presentation/view/send_notification_view.dart';
+import '../../features/offers/presentation/views/manage_offers_view.dart';
 import '../../features/orders/presentation/views/order_details_view.dart';
 import '../../features/products/data/models/product_args.dart';
 import '../../features/products/presentation/views/edit_product_view.dart';
@@ -27,6 +28,9 @@ class AppRouter {
         break;
       case ManageCategoryView.routeName:
         page = const ManageCategoryView();
+        break;
+      case ManageOffersView.routeName:
+        page = const ManageOffersView();
         break;
       case CreateNewProductView.routeName:
         page = const CreateNewProductView();

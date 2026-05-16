@@ -19,6 +19,7 @@ Future<void> setupLocator() async {
   await _setupCategoryFeature();
   await _setupHomeFeature();
   await _setupNotificationFeature();
+  await _setupOffersFeature();
   await _setupProductsFeature();
   await _setupOrdersFeature();
 }
@@ -163,6 +164,27 @@ Future<void> _setupNotificationFeature() async {
   injector.registerLazySingleton<NotificationRemoteDataSource>(
     () => NotificationRemoteDataSourceImpl(
       supabaseClient: injector<SupabaseClient>(),
+    ),
+  );
+}
+
+Future<void> _setupOffersFeature() async {
+  injector.registerFactory(
+    () => OfferCubit(
+      offersRepo: injector<OffersRepo>(),
+      productsRepo: injector<ProductsRepo>(),
+    ),
+  );
+
+  injector.registerLazySingleton<OffersRepo>(
+    () => OffersRepoImpl(
+      injector<OffersRemoteDataSource>(),
+    ),
+  );
+
+  injector.registerLazySingleton<OffersRemoteDataSource>(
+    () => OffersRemoteDataSourceImpl(
+      injector<Database>(),
     ),
   );
 }

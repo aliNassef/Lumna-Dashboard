@@ -526,7 +526,19 @@ Benefits:
 - ❌ Never mix UI logic into services or database classes.
 - ❌ Never bypass `core/navigation/` for programmatic routing.
 - ❌ Never use `dynamic` unless parsing unknown third-party JSON.
-
+---
+Keep every file under 120 lines of code. If it grows beyond that, split it immediately into multiple files.
+Never return a Widget directly from a function.
+Always extract UI into a separate Widget class.
+Each Widget must be placed in its own file when it becomes reusable or exceeds a small local scope.
+Do not define Widgets as private (no _WidgetName); always use public class names.
+Avoid anonymous Widget builders for complex UI; prefer named Widgets.
+Break large UI trees into small, single-responsibility Widgets.
+Each file should have one clear responsibility (Single Responsibility Principle).
+Do not mix business logic with UI code inside Widgets.
+Keep build methods clean; if logic appears, extract it into methods or separate classes.
+Prefer composition over large monolithic Widgets.
+If a Widget is used in more than one place, it must be moved to a shared components folder.
 
 
 ## Quick Checklist Before Generating Code

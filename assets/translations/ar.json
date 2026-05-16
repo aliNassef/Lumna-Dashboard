@@ -72,6 +72,7 @@
   "full_name": "الاسم الكامل",
   "product_create_title": "+ منتج جديد",
   "categories_add": "+ إضافة فئة",
+  "offer_create_title": "+ عرض جديد",
   "dashboard_overview": "نظرة عامة",
   "dashboard_total_sales": "إجمالي المبيعات",
   "dashboard_quick_actions": "إجراءات سريعة",
@@ -238,6 +239,24 @@
   "timeline_processing_desc": "يتم الآن تجهيز الطلب داخل المخزن.",
   "app_title": "لومينا للإدارة",
   "orders_description": "راجع وأدر طلبات العملاء الحديثة.\nقم بمعالجة الطلبات واستعرض تفاصيل العمليات بسهولة.",
-  "alexandria_egypt": "الإسكندرية، مصر"
+  "alexandria_egypt": "الإسكندرية، مصر",
+  "offers_title": "العروض",
+  "offers_desc": "أنشئ وأدر حملات خصم المنتجات.",
+  "offers_empty": "لا توجد عروض بعد",
+  "offer_add": "إضافة عرض",
+  "offer_edit": "تعديل العرض",
+  "offer_title": "عنوان العرض *",
+  "offer_title_hint": "مثال: عرض الصيف",
+  "offer_discount": "خصم",
+  "offer_discount_percent": "نسبة الخصم *",
+  "offer_start_date": "تاريخ البدء *",
+  "offer_end_date": "تاريخ الانتهاء *",
+  "offer_active": "العرض نشط",
+  "offer_saved": "تم حفظ العرض بنجاح",
+  "offer_select_product": "اختر منتجًا",
+  "offer_percent_error": "يجب أن يكون الخصم بين 1 و100",
+  "offer_date_error": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
+  "start_date" : "تاريخ البدء",
+  "end_date" : "تاريخ الانتهاء"
 }
  

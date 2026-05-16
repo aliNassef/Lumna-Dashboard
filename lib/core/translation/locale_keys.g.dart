@@ -76,6 +76,7 @@ abstract class  LocaleKeys {
   static const full_name = 'full_name';
   static const product_create_title = 'product_create_title';
   static const categories_add = 'categories_add';
+  static const offer_create_title = 'offer_create_title';
   static const dashboard_overview = 'dashboard_overview';
   static const dashboard_total_sales = 'dashboard_total_sales';
   static const dashboard_quick_actions = 'dashboard_quick_actions';
@@ -243,5 +244,23 @@ abstract class  LocaleKeys {
   static const app_title = 'app_title';
   static const orders_description = 'orders_description';
   static const alexandria_egypt = 'alexandria_egypt';
+  static const offers_title = 'offers_title';
+  static const offers_desc = 'offers_desc';
+  static const offers_empty = 'offers_empty';
+  static const offer_add = 'offer_add';
+  static const offer_edit = 'offer_edit';
+  static const offer_title = 'offer_title';
+  static const offer_title_hint = 'offer_title_hint';
+  static const offer_discount = 'offer_discount';
+  static const offer_discount_percent = 'offer_discount_percent';
+  static const offer_start_date = 'offer_start_date';
+  static const offer_end_date = 'offer_end_date';
+  static const offer_active = 'offer_active';
+  static const offer_saved = 'offer_saved';
+  static const offer_select_product = 'offer_select_product';
+  static const offer_percent_error = 'offer_percent_error';
+  static const offer_date_error = 'offer_date_error';
+  static const start_date = 'start_date';
+  static const end_date = 'end_date';
 
 }
