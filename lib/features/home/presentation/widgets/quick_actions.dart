@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/utils/shape.dart';
 import '../../../category/presentation/views/manage_category_view.dart';
+import '../../../offers/presentation/views/manage_offers_view.dart';
 import '../../../products/presentation/views/create_new_product_view.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
@@ -44,6 +45,12 @@ class QuickActionsSection extends StatelessWidget {
             title: LocaleKeys.categories_add.tr(),
             icon: Icons.create_new_folder_outlined,
             onTap: () => context.pushNamed(ManageCategoryView.routeName),
+          ),
+          const Gap(12),
+          QuickActionTile(
+            title: LocaleKeys.offer_create_title.tr(),
+            icon: Icons.local_offer_outlined,
+            onTap: () => context.pushNamed(ManageOffersView.routeName),
           ),
         ],
       ),

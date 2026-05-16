@@ -1,11 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/extensions/app_dialog_extension.dart';
 import 'package:lumna_admin/core/navigation/navigation.dart';
 import 'package:lumna_admin/features/notification/presentation/view/send_notification_view.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';
-import '../../../../core/navigation/app_navigation.dart';
+import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/utils/shape.dart';
 import '../../../../core/utils/spacer.dart';
 import 'preference_tile.dart';
@@ -24,7 +26,7 @@ class PreferencesCard extends StatelessWidget {
             bottom: Spacing.large,
           ),
           child: Text(
-            'PREFERENCES',
+            LocaleKeys.section_preferences.tr(),
             style: context.typography.bold14.copyWith(
               color: context.colors.primary,
               letterSpacing: 1.2,
@@ -41,7 +43,7 @@ class PreferencesCard extends StatelessWidget {
             children: [
               PreferenceTile(
                 icon: Icons.notifications_none_outlined,
-                title: 'Notifications',
+                title: LocaleKeys.notifications_title.tr(),
                 onTap: () {
                   context.pushNamed(
                     SendNotificationView.routeName,
@@ -54,9 +56,13 @@ class PreferencesCard extends StatelessWidget {
               const Gap(Spacing.extraLarge),
               PreferenceTile(
                 icon: Icons.translate,
-                title: 'Language',
-                trailingText: 'English',
-                onTap: () {},
+                title: LocaleKeys.language_title.tr(),
+                trailingText: context.locale.countryCode == 'en'
+                    ? LocaleKeys.english.tr()
+                    : LocaleKeys.arabic.tr(),
+                onTap: () {
+                  context.showLangSheet();
+                },
               ),
             ],
           ),

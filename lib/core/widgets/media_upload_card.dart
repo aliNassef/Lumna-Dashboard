@@ -73,7 +73,7 @@ class MediaUploadCard extends StatelessWidget {
                     ),
                     const Gap(8),
                     Text(
-                      'PNG, JPG, GIF up to 10MB',
+                      LocaleKeys.file_format_info.tr(),
                       style: context.typography.regular14.copyWith(
                         color: context.colors.onSurfaceVariant.withValues(
                           alpha: 0.6,

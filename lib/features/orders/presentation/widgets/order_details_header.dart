@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -7,6 +8,7 @@ import 'package:lumna_admin/core/extensions/color_extensions.dart';
 import 'package:lumna_admin/core/extensions/date_time_extension.dart';
 import 'package:lumna_admin/core/extensions/mediaquery_size.dart';
 import 'package:lumna_admin/core/extensions/order_status.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import 'package:lumna_admin/features/orders/data/models/order_details_model.dart';
 import 'package:lumna_admin/features/orders/presentation/controller/orders_cubit/orders_state.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -36,7 +38,7 @@ class OrderDetailHeader extends StatelessWidget {
               Icon(Icons.arrow_back, size: 18, color: context.colors.primary),
               const Gap(8),
               Text(
-                'Back to Orders',
+                LocaleKeys.back_to_orders.tr(),
                 style: context.typography.semiBold16.copyWith(
                   color: context.colors.primary,
                 ),
@@ -61,7 +63,7 @@ class OrderDetailHeader extends StatelessWidget {
               listener: (context, state) {
                 if (state.status.isUpdatedOrderStatusFailure) {
                   context.showToast(
-                    text: state.failure?.errMessage ?? 'Something went wrong',
+                    text: state.failure?.errMessage ?? LocaleKeys.something_went_wrong.tr(),
                     backgroundColor: context.colors.error,
                   );
                 }
@@ -151,7 +153,7 @@ class OrderDetailHeader extends StatelessWidget {
 
         // Date Subtitle
         Text(
-          'Placed on  ${orderDetailsModel.createdAt.orderDetailsDisplayText}',
+          '${LocaleKeys.placed_on_prefix.tr()}${orderDetailsModel.createdAt.orderDetailsDisplayText}',
           style: context.typography.regular16.copyWith(color: Colors.grey[600]),
         ),
 

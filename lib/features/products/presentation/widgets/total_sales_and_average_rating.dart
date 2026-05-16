@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';
@@ -26,10 +28,10 @@ class TotalSalesAndAvgRating extends StatelessWidget {
         crossAxisAlignment: .start,
         children: [
           const Gap(Spacing.extraLarge),
-          _buildLabel(context, 'RATING'),
+          _buildLabel(context, LocaleKeys.label_rating_upper.tr()),
           ListTile(
             title: Text(
-              'Total Units Sold',
+              LocaleKeys.total_units_sold.tr(),
               style: context.typography.bold18.copyWith(
                 color: const Color(0xFFB0C1D9),
               ),
@@ -44,7 +46,7 @@ class TotalSalesAndAvgRating extends StatelessWidget {
           const Divider(),
           ListTile(
             title: Text(
-              'Customer Rating',
+              LocaleKeys.customer_rating.tr(),
               style: context.typography.bold18.copyWith(
                 color: const Color(0xFFB0C1D9),
               ),

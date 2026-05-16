@@ -15,6 +15,9 @@ export '../../features/home/presentation/controller/statistics_cubit/statistics_
 export '../../features/notification/data/datasource/notification_remote_datasource.dart';
 export '../../features/notification/data/repo/notification_repo.dart';
 export '../../features/notification/presentation/controller/notification_cubit/notification_cubit.dart';
+export '../../features/offers/data/datasource/offers_remote_datasource.dart';
+export '../../features/offers/data/repo/offers_repo.dart';
+export '../../features/offers/presentation/controller/offer_cubit/offer_cubit.dart';
 export '../../features/products/data/datasource/products_remote_datasource.dart';
 export '../../features/products/data/repo/products_repo.dart';
 export '../../features/orders/data/repo/orders_repo.dart';

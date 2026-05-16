@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';
@@ -19,14 +21,14 @@ class OrderTimelineCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Order Timeline', style: context.typography.bold20),
+          Text(LocaleKeys.section_order_timeline.tr(), style: context.typography.bold20),
           const Gap(24),
 
           TimelineItem(
-            title: 'Order Placed',
-            subtitle: 'Oct 24, 2023 - 10:45 AM',
+            title: LocaleKeys.timeline_order_placed.tr(),
+            subtitle: LocaleKeys.timeline_order_placed_date.tr(),
             description:
-                'Customer successfully placed the order and payment was authorized.',
+                LocaleKeys.timeline_order_placed_desc.tr(),
             icon: Icon(
               Icons.check_circle,
               color: context.colors.primary,
@@ -35,9 +37,9 @@ class OrderTimelineCard extends StatelessWidget {
           ),
 
           TimelineItem(
-            title: 'Processing',
-            subtitle: 'Pending',
-            description: 'Order is being prepared in the warehouse.',
+            title: LocaleKeys.timeline_processing_title.tr(),
+            subtitle: LocaleKeys.timeline_processing_status.tr(),
+            description: LocaleKeys.timeline_processing_desc.tr(),
             isLast: true,
             icon: Icon(
               Icons.inventory_2_outlined,

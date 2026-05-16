@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 enum OrderStatus {
   all,
@@ -34,19 +36,19 @@ extension OrderStatusExtension on OrderStatus {
   String get value {
     switch (this) {
       case OrderStatus.pending:
-        return 'Pending';
+        return LocaleKeys.pending.tr();
       case OrderStatus.processing:
-        return 'Processing';
+        return LocaleKeys.processing.tr();
       case OrderStatus.shipped:
-        return 'Shipped';
+        return LocaleKeys.shipped.tr();
       case OrderStatus.delivered:
-        return 'Delivered';
+        return LocaleKeys.delivered.tr();
       case OrderStatus.cancelled:
-        return 'Cancelled';
+        return LocaleKeys.status_cancelled.tr();
       case OrderStatus.refunded:
-        return 'Refunded';
+        return LocaleKeys.status_refunded.tr();
       case OrderStatus.all:
-        return 'All';
+        return LocaleKeys.all_orders.tr();
     }
   }
 

@@ -1,6 +1,11 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExtension on DateTime {
+  String get monthDayYearText {
+    final localDate = toLocal();
+    return DateFormat('d / M / y').format(localDate);
+  }
+
   String get orderDisplayText {
     final localDate = toLocal();
     final now = DateTime.now();

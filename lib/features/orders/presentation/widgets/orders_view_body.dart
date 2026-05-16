@@ -28,7 +28,7 @@ class OrdersViewBody extends StatelessWidget {
               ),
               const Gap(Spacing.small),
               Text(
-                'Review and manage recent customer orders.\nProcess approvals and view detailed \ntransaction histories.',
+                LocaleKeys.orders_description.tr(),
                 style: context.typography.regular16.copyWith(
                   color: context.colors.onTertiary,
                 ),

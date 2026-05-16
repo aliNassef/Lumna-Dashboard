@@ -98,7 +98,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const Gap(8),
           Text(
-            'Select multiple PNG, JPG, GIF images',
+            LocaleKeys.select_images_instruction.tr(),
             style: context.typography.regular14.copyWith(
               color: context.colors.onSurfaceVariant.withValues(alpha: 0.6),
             ),
@@ -107,7 +107,7 @@ class _EmptyState extends StatelessWidget {
           FilledButton.icon(
             onPressed: onAddImages,
             icon: const Icon(Icons.add_box_rounded),
-            label: const Text('Add images'),
+            label: Text(LocaleKeys.add_images.tr()),
           ),
         ],
       ),
@@ -138,7 +138,7 @@ class _ImagesGrid extends StatelessWidget {
         Row(
           children: [
             Text(
-              '$totalImages image${totalImages == 1 ? '' : 's'} selected',
+              '$totalImages ${totalImages == 1 ? 'image' : 'images'} selected',
               style: context.typography.bold16.copyWith(
                 color: context.colors.onSurface,
               ),

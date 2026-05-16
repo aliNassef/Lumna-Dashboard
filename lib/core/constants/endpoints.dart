@@ -2,6 +2,7 @@ abstract class Endpoints {
   static const String profiles = 'profiles';
   static const String categories = 'categories';
   static const String products = 'products';
+  static const String offers = 'offers';
   static const String addresses = 'addresses';
   static const String carts = 'carts';
   static const String cartItems = 'cart_items';

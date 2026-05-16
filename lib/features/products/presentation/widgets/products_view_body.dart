@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/padding_extension.dart';
 import '../../../../core/utils/spacer.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
@@ -38,7 +40,7 @@ class ProductsViewBody extends StatelessWidget {
                 ),
               ],
               title: Text(
-                '$totalItems Total Items',
+                '$totalItems ${LocaleKeys.total_items_label.tr()}',
                 style: context.typography.bold24.copyWith(
                   color: context.colors.primary,
                 ),

@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';
@@ -24,7 +26,7 @@ class LocationCard extends StatelessWidget {
             bottom: Spacing.large,
           ),
           child: Text(
-            'LOCATION',
+            LocaleKeys.section_location.tr(),
             style: context.typography.bold14.copyWith(
               color: context.colors.primary,
               letterSpacing: 1.2,
@@ -39,7 +41,7 @@ class LocationCard extends StatelessWidget {
           ),
           child: PreferenceTile(
             icon: Icons.location_on_outlined,
-            title: 'Manage Store Location',
+            title: LocaleKeys.manage_store_location.tr(),
             onTap: () {
               context.pushNamed(MapLocationView.routeName);
             },

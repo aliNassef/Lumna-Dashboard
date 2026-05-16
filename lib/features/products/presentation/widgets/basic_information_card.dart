@@ -43,7 +43,7 @@ class BasicInformationCard extends StatelessWidget {
             const Gap(Spacing.large),
             CustomTextFormField(
               controller: name,
-              hintText: 'e.g. Monstera Deliciosa',
+              hintText: LocaleKeys.hint_product_name_example.tr(),
               validator: Validators.fieldIsRequired,
             ),
 
@@ -55,7 +55,7 @@ class BasicInformationCard extends StatelessWidget {
 
             CustomTextFormField(
               controller: description,
-              hintText: 'Describe the product...',
+              hintText: LocaleKeys.hint_describe_product.tr(),
               maxLines: 5,
               validator: Validators.descriptionValidator,
             ),

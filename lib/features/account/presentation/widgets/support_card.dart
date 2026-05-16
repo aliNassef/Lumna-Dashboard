@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lumna_admin/core/extensions/color_extensions.dart';
+import 'package:lumna_admin/core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/utils/shape.dart';
@@ -21,7 +23,7 @@ class SupportCard extends StatelessWidget {
             bottom: Spacing.large,
           ),
           child: Text(
-            'SUPPORT',
+            LocaleKeys.section_support.tr(),
             style: context.typography.bold14.copyWith(
               color: context.colors.primary,
               letterSpacing: 1.2,
@@ -39,13 +41,13 @@ class SupportCard extends StatelessWidget {
               PreferenceTile(
                 icon: Icons.help_outline,
 
-                title: 'Help Center',
+                title: LocaleKeys.help_center.tr(),
                 onTap: () {},
               ),
               const Gap(Spacing.extraLarge),
               PreferenceTile(
                 icon: Icons.outlined_flag,
-                title: 'Report an Issue',
+                title: LocaleKeys.report_an_issue.tr(),
                 onTap: () {},
               ),
             ],
