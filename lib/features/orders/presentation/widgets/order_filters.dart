@@ -22,11 +22,7 @@ class OrderFilters extends StatelessWidget {
           current.status.isSuccessOrders ||
           current.status.isUpdatedOrderStatusSuccess,
       builder: (context, state) {
-        final selectedStatus =
-            state.status.isSuccessOrders ||
-                state.status.isUpdatedOrderStatusSuccess
-            ? state.selectedStatus
-            : OrderStatus.all;
+        final selectedStatus = state.selectedStatus;
         Logger.info(selectedStatus.toString());
         return SizedBox(
           height: 30.h,

@@ -1,7 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../core/extensions/app_dialog_extension.dart';
+import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
 import '../../data/models/account_model.dart';
 import '../controller/account_cubit/account_cubit.dart';
@@ -14,7 +18,7 @@ class ProfileHeaderBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountCubit, AccountState>(
+    return BlocConsumer<AccountCubit, AccountState>(
       buildWhen: (previous, current) =>
           current.status.isLoadingProfile ||
           current.status.isUpdatingProfile ||
@@ -22,6 +26,24 @@ class ProfileHeaderBuilder extends StatelessWidget {
           current.status.isUpdateProfileFailure ||
           current.status.isProfileLoaded ||
           current.status.isUpdateProfileSuccess,
+      listenWhen: (previous, current) =>
+          current.status.isUpdateProfileSuccess ||
+          current.status.isUpdateProfileFailure,
+      listener: (context, state) {
+        if (state.status.isUpdateProfileSuccess) {
+          context.showToast(
+            text: LocaleKeys.profile_updated_successfully.tr(),
+            backgroundColor: context.colors.primary,
+          );
+        }
+
+        if (state.status.isUpdateProfileFailure && state.failure != null) {
+          context.showToast(
+            text: state.failure!.errMessage,
+            backgroundColor: context.colors.error,
+          );
+        }
+      },
       builder: (context, state) {
         return switch (state.status) {
           AccountStatus.loadingProfile ||

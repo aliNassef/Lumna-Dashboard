@@ -6,4 +6,7 @@ class StoragePaths {
 
   static const String categoryImagesBucket = 'categories';
   static const String categoryImagesFolder = 'categoriesImages';
+
+  static const String avatarImagesBucket = 'avatars';
+  static const String avatarImagesFolder = 'accountAvatars';
 }

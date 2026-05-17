@@ -47,12 +47,10 @@ class AccountRemoteDataSourceImpl implements AccountRemoteDataSource {
       throw const ServerException('No authenticated user found');
     }
 
-    await _database.updateWhere(
+    await _database.update(
       path: Endpoints.profiles,
       data: profile.toMap(),
-      filters: [
-        {'column': 'id', 'value': currentUser.id},
-      ],
+      id: currentUser.id,
     );
   }
 }

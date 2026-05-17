@@ -29,6 +29,8 @@ Future<void> _setupAccountFeature() async {
     () => AccountCubit(
       accountRepo: injector<AccountRepo>(),
       authRepo: injector<AuthRepo>(),
+      imagePicker: injector<ImagePickerService>(),
+      storage: injector<StorageService>(),
     ),
   );
 

@@ -20,11 +20,6 @@ class OrderListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocSelector<OrdersCubit, OrderState, _OrderListItemViewModel?>(
       selector: (state) {
-        if (!state.status.isSuccessOrders &&
-            !state.status.isUpdatedOrderStatusSuccess) {
-          return null;
-        }
-
         final order = state.filteredOrders
             .where((order) => order.id == orderId)
             .firstOrNull;

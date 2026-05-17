@@ -15,6 +15,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/navigation/app_navigation.dart';
+import '../../../../core/utils/spacer.dart';
 import 'change_order_status_menu.dart';
 import 'items_summary_section.dart';
 
@@ -31,12 +32,14 @@ class OrderDetailHeader extends StatelessWidget {
       children: [
         // Back Button Link
         InkWell(
-          onTap: () => context.pop(),
+          onTap: () {
+            context.pop();
+          },
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(Icons.arrow_back, size: 18, color: context.colors.primary),
-              const Gap(8),
+              const Gap(Spacing.large),
               Text(
                 LocaleKeys.back_to_orders.tr(),
                 style: context.typography.semiBold16.copyWith(
@@ -47,7 +50,7 @@ class OrderDetailHeader extends StatelessWidget {
           ),
         ),
 
-        const Gap(16),
+        const Gap(Spacing.extraLarge),
 
         // Order ID and Status Chip
         Row(
@@ -63,7 +66,9 @@ class OrderDetailHeader extends StatelessWidget {
               listener: (context, state) {
                 if (state.status.isUpdatedOrderStatusFailure) {
                   context.showToast(
-                    text: state.failure?.errMessage ?? LocaleKeys.something_went_wrong.tr(),
+                    text:
+                        state.failure?.errMessage ??
+                        LocaleKeys.something_went_wrong.tr(),
                     backgroundColor: context.colors.error,
                   );
                 }
@@ -164,6 +169,7 @@ class OrderDetailHeader extends StatelessWidget {
           width: context.width * .5,
           child: ChangeOrderStatusMenu(
             orderId: orderDetailsModel.id,
+            initialStatus: orderDetailsModel.status,
           ),
         ),
         const Gap(24),

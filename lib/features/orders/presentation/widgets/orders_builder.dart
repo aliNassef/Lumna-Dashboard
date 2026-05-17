@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:lumna_admin/features/orders/presentation/controller/orders_cubit/orders_state.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../../../core/logging/logger.dart';
 import '../../../../core/utils/spacer.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
 import '../../../home/presentation/widgets/empty_orders.dart';
@@ -25,6 +26,7 @@ class OrdersBuilder extends StatelessWidget {
           current.status.isLoadingOrders ||
           current.status.isUpdatedOrderStatusSuccess,
       builder: (context, state) {
+        Logger.info(state.toString());
         return switch (state.status) {
           OrderStates.loadingOrders => SliverList.separated(
             itemBuilder: (_, index) => Skeletonizer(
@@ -54,9 +56,19 @@ class OrdersBuilder extends StatelessWidget {
           OrderStates.failureGetOrders => SliverToBoxAdapter(
             child: CustomFailureWidget(failure: state.failure!),
           ),
-          _ => const SliverToBoxAdapter(
-            child: SizedBox.shrink(),
-          ),
+          _ =>
+            state.filteredOrders.isEmpty
+                ? const SliverToBoxAdapter(
+                    child: EmptyOrders(),
+                  )
+                : SliverList.separated(
+                    itemBuilder: (_, index) => OrderListItem(
+                      orderId: state.filteredOrders[index].id,
+                    ),
+                    separatorBuilder: (context, index) =>
+                        const Gap(Spacing.extraLarge),
+                    itemCount: state.filteredOrders.length,
+                  ),
         };
       },
     );

@@ -48,6 +48,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final isArabic = context.locale.languageCode == 'ar';
+
     return Form(
       key: _formKey,
       child: Column(
@@ -87,7 +89,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           ),
 
           Align(
-            alignment: Alignment.centerRight,
+            alignment: isArabic ? Alignment.centerLeft : Alignment.centerRight,
             child: TextButton(
               onPressed: () {},
               child: Text(

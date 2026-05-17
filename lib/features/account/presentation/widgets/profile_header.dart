@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:lumna_admin/features/account/data/models/account_model.dart';
 
@@ -7,6 +8,7 @@ import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/shape.dart';
 import '../../../../core/utils/spacer.dart';
+import '../controller/account_cubit/account_cubit.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key, required this.account});
@@ -37,24 +39,29 @@ class ProfileHeader extends StatelessWidget {
             Positioned(
               bottom: 8,
               right: 8,
-              child: Container(
-                padding: const EdgeInsets.all(Spacing.medium),
-                decoration: BoxDecoration(
-                  color: context.colors.primary,
-                  // Using Shape.medium for the small button's rounded corners
-                  borderRadius: BorderRadius.circular(Shape.medium),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Icon(
-                  Icons.edit_outlined,
-                  color: context.colors.onPrimary,
-                  size: 20,
+              child: GestureDetector(
+                onTap: () {
+                  context.read<AccountCubit>().updateAvatar();
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(Spacing.medium),
+                  decoration: BoxDecoration(
+                    color: context.colors.primary,
+                    // Using Shape.medium for the small button's rounded corners
+                    borderRadius: BorderRadius.circular(Shape.medium),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.edit_outlined,
+                    color: context.colors.onPrimary,
+                    size: 20,
+                  ),
                 ),
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lumna_admin/core/logging/logger.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/order_status.dart';
@@ -11,12 +12,18 @@ import '../../../../core/utils/spacer.dart';
 import '../controller/orders_cubit/orders_cubit.dart';
 
 class ChangeOrderStatusMenu extends StatelessWidget {
-  const ChangeOrderStatusMenu({super.key, required this.orderId});
+  const ChangeOrderStatusMenu({
+    super.key,
+    required this.orderId,
+    required this.initialStatus,
+  });
   final String orderId;
+  final OrderStatus initialStatus;
+
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
-      initialValue: null,
+      initialValue: initialStatus.name,
       style: context.typography.regular16.copyWith(
         // color: context.colors.onSurface,
       ),
@@ -45,7 +52,7 @@ class ChangeOrderStatusMenu extends StatelessWidget {
       items: OrderStatus.values
           .map(
             (status) => DropdownMenuItem(
-              value: status.value,
+              value: status.name,
               child: Text(
                 status.value,
               ),
@@ -54,9 +61,13 @@ class ChangeOrderStatusMenu extends StatelessWidget {
           .toList(),
 
       onChanged: (value) {
+        if (value == null) return;
+
+        final status = OrderStatus.values.byName(value);
+        Logger.info(status.name);
         context.read<OrdersCubit>().updateOrderStatus(
           orderId,
-          OrderStatus.fromValue(value!),
+          status,
         );
       },
     );

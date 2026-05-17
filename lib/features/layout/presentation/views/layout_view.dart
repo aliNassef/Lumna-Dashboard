@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lazy_indexed_stack/flutter_lazy_indexed_stack.dart';
+import 'package:lumna_admin/core/di/injection_container.dart';
+import '../../../account/presentation/controller/account_cubit/account_cubit.dart';
 import '../../../account/presentation/views/account_view.dart';
 import '../../../home/presentation/views/home_view.dart';
 import '../../../orders/presentation/views/orders_view.dart';
@@ -24,18 +27,21 @@ class _LayoutViewState extends State<LayoutView> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: LazyIndexedStack(
-          index: _currentIndex,
-          children: _screens,
+    return BlocProvider(
+      create: (context) => injector<AccountCubit>()..getCurrentProfile(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: LazyIndexedStack(
+            index: _currentIndex,
+            children: _screens,
+          ),
         ),
+        floatingActionButton: BottomNavBarItems(
+          onChanged: (index) => setState(() => _currentIndex = index),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
-      floatingActionButton: BottomNavBarItems(
-        onChanged: (index) => setState(() => _currentIndex = index),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

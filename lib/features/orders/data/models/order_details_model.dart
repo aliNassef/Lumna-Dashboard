@@ -160,7 +160,6 @@ class OrderDetailsModel extends Equatable {
     totalAmount,
     paymentMethod,
     customerName,
-
     items,
   ];
 }

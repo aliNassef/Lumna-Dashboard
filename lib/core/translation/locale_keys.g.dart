@@ -182,6 +182,7 @@ abstract class  LocaleKeys {
   static const please_select_category = 'please_select_category';
   static const product_deleted_successfully = 'product_deleted_successfully';
   static const product_updated_successfully = 'product_updated_successfully';
+  static const profile_updated_successfully = 'profile_updated_successfully';
   static const coming_soon_title = 'coming_soon_title';
   static const coming_soon_message = 'coming_soon_message';
   static const choose_language = 'choose_language';
