@@ -18,9 +18,6 @@ class OrderFilters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OrdersCubit, OrderState>(
-      buildWhen: (previous, current) =>
-          current.status.isSuccessOrders ||
-          current.status.isUpdatedOrderStatusSuccess,
       builder: (context, state) {
         final selectedStatus = state.selectedStatus;
         Logger.info(selectedStatus.toString());

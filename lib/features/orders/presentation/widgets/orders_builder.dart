@@ -24,7 +24,11 @@ class OrdersBuilder extends StatelessWidget {
           current.status.isSuccessOrders ||
           current.status.isFailureOrders ||
           current.status.isLoadingOrders ||
-          current.status.isUpdatedOrderStatusSuccess,
+          current.status.isUpdatedOrderStatusSuccess ||
+          current.status.isUpdatedOrderStatusFailure ||
+          current.status.isLoadingOrderDetails ||
+          current.status.isSuccessOrderDetails ||
+          current.status.isFailureOrderDetails,
       builder: (context, state) {
         Logger.info(state.toString());
         return switch (state.status) {
