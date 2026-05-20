@@ -263,5 +263,6 @@ abstract class  LocaleKeys {
   static const offer_date_error = 'offer_date_error';
   static const start_date = 'start_date';
   static const end_date = 'end_date';
+  static const press_again_to_exit = 'press_again_to_exit';
 
 }
