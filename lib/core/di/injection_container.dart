@@ -154,6 +154,7 @@ Future<void> _setupNotificationFeature() async {
     () => NotificationCubit(
       notificationRepo: injector<NotificationRepo>(),
       imagePickerService: injector<ImagePickerService>(),
+      storageService: injector<StorageService>(),
     ),
   );
 

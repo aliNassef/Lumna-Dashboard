@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/utils/spacer.dart';
 import '../../../../core/utils/shape.dart';
 import '../../../category/presentation/views/manage_category_view.dart';
 import '../../../offers/presentation/views/manage_offers_view.dart';
@@ -40,13 +41,13 @@ class QuickActionsSection extends StatelessWidget {
             icon: Icons.add_circle_outline,
             onTap: () => context.pushNamed(CreateNewProductView.routeName),
           ),
-          const Gap(12),
+          const Gap(Spacing.large),
           QuickActionTile(
             title: LocaleKeys.categories_add.tr(),
             icon: Icons.create_new_folder_outlined,
             onTap: () => context.pushNamed(ManageCategoryView.routeName),
           ),
-          const Gap(12),
+          const Gap(Spacing.large),
           QuickActionTile(
             title: LocaleKeys.offer_create_title.tr(),
             icon: Icons.local_offer_outlined,

@@ -4,28 +4,24 @@ class SendNotificationRequest extends Equatable {
   const SendNotificationRequest({
     required this.title,
     required this.body,
+    required this.type,
     this.imageUrl,
-    this.targetType = 'broadcast',
-    this.targetValue,
   });
 
   final String title;
   final String body;
+  final String type;
   final String? imageUrl;
-  final String targetType;
-  final String? targetValue;
 
   Map<String, dynamic> toMap() {
     return {
       'title': title,
       'body': body,
-      if (imageUrl != null && imageUrl!.isNotEmpty) 'imageUrl': imageUrl,
-      if (targetType.isNotEmpty) 'targetType': targetType,
-      if (targetValue != null && targetValue!.isNotEmpty)
-        'targetValue': targetValue,
+      'type': type,
+      if (imageUrl != null && imageUrl!.isNotEmpty) 'image_url': imageUrl,
     };
   }
 
   @override
-  List<Object?> get props => [title, body, imageUrl, targetType, targetValue];
+  List<Object?> get props => [title, body, type, imageUrl];
 }
