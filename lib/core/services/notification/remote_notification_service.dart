@@ -129,11 +129,12 @@ class RemoteNotificationService {
   Future<bool> sendToAllUsers({
     required String title,
     required String body,
+    String type = 'general',
   }) async {
     try {
       await _supabase.functions.invoke(
         'notification_handler',
-        body: {'title': title, 'body': body},
+        body: {'title': title, 'body': body, 'type': type},
       );
       return true;
     } catch (e, stackTrace) {

@@ -92,6 +92,7 @@ abstract class  LocaleKeys {
   static const error_invalid_password = 'error_invalid_password';
   static const error_passwords_dont_match = 'error_passwords_dont_match';
   static const error_full_name_required = 'error_full_name_required';
+  static const error_failed_to_upload_image = 'error_failed_to_upload_image';
   static const error_field_required = 'error_field_required';
   static const error_comment_required = 'error_comment_required';
   static const field_description_hint = 'field_description_hint';
@@ -224,6 +225,8 @@ abstract class  LocaleKeys {
   static const status_refunded = 'status_refunded';
   static const payment_method_cash = 'payment_method_cash';
   static const payment_method_credit = 'payment_method_credit';
+  static const notification_type_general = 'notification_type_general';
+  static const notification_type_offer = 'notification_type_offer';
   static const notification_type_push = 'notification_type_push';
   static const notification_type_mobile = 'notification_type_mobile';
   static const notification_type_email = 'notification_type_email';

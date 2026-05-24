@@ -14,7 +14,6 @@ import '../../../../core/utils/spacer.dart';
 import '../../../../core/widgets/media_upload_card.dart';
 import '../../data/models/send_notification_request.dart';
 import '../controller/notification_cubit/notification_cubit.dart';
-import 'targeting_card.dart';
 
 class SendNotificationViewBody extends StatefulWidget {
   const SendNotificationViewBody({super.key});
@@ -28,6 +27,7 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   final _bodyController = TextEditingController();
+  String _selectedType = 'general';
 
   @override
   void dispose() {
@@ -47,6 +47,7 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
           );
           _titleController.clear();
           _bodyController.clear();
+          setState(() => _selectedType = 'general');
           context.read<NotificationCubit>().resetForm();
         }
 
@@ -92,6 +93,39 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
                     ),
                     const Gap(24),
                     Text(
+                      LocaleKeys.notification_type_push.tr(),
+                      style: context.typography.semiBold12.copyWith(
+                        color: context.colors.onTertiary,
+                      ),
+                    ),
+                    const Gap(Spacing.small),
+                    DropdownButtonFormField<String>(
+                      initialValue: _selectedType,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 14,
+                        ),
+                      ),
+                      items: [
+                        DropdownMenuItem(
+                          value: 'general',
+                          child: Text(LocaleKeys.notification_type_general.tr()),
+                        ),
+                        DropdownMenuItem(
+                          value: 'offer',
+                          child: Text(LocaleKeys.notification_type_offer.tr()),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) {
+                          setState(() => _selectedType = value);
+                        }
+                      },
+                    ),
+                    const Gap(24),
+                    Text(
                       LocaleKeys.label_message_body.tr(),
                       style: context.typography.semiBold12.copyWith(
                         color: context.colors.onTertiary,
@@ -133,8 +167,6 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
                 ),
               ),
               const Gap(Spacing.extraLarge),
-              const TargetingCard(),
-              const Gap(Spacing.extraLarge),
               CustomButton(
                 text: state.status.isSending
                     ? LocaleKeys.broadcasting.tr()
@@ -165,10 +197,12 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
     final isValid = _formKey.currentState?.validate() ?? false;
     if (!isValid) return;
 
-    context.read<NotificationCubit>().sendNotification(
+    final cubit = context.read<NotificationCubit>();
+    cubit.sendNotification(
       SendNotificationRequest(
         title: _titleController.text.trim(),
         body: _bodyController.text.trim(),
+        type: _selectedType,
       ),
     );
   }

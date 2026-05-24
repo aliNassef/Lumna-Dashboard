@@ -94,6 +94,8 @@ When an admin updates an order status to "shipped", the system automatically sen
 - **FR-011**: System MUST add an `image_url` column to the notifications table
 - **FR-012**: System MUST add a CHECK constraint on notifications.type to restrict values to 'general', 'offer', and 'order'
 - **FR-013**: System MUST enforce unique device tokens to prevent duplicates
+- **FR-014**: System MUST queue push notification sends for retry when the delivery service is unreachable
+- **FR-015**: System MUST send all notifications immediately at time of trigger — no scheduled or delayed delivery
 
 ### Key Entities *(include if feature involves data)*
 
@@ -114,6 +116,7 @@ When an admin updates an order status to "shipped", the system automatically sen
 - **SC-005**: Invalid device tokens are cleaned up automatically after each send batch with zero manual intervention
 - **SC-006**: Zero duplicate notifications are sent for a single offer creation or order status change event
 - **SC-007**: Notification history is preserved in the database for auditing and user reference
+- **SC-008**: Queued notifications are retried and delivered within 5 minutes of service restoration
 
 ## Assumptions
 
@@ -126,3 +129,7 @@ When an admin updates an order status to "shipped", the system automatically sen
 - Users have granted notification permission on their devices (FCM token validity is managed by FCM)
 - Image URLs will be publicly accessible URLs, not uploaded files
 - Database triggers or webhooks will be used to detect offer inserts and order status changes
+- Any authenticated admin user can send manual notifications — no additional permission check required beyond existing admin auth
+- Scheduled or delayed notifications are explicitly out of scope
+- Notification delivery status tracking in the admin dashboard is out of scope
+- Standard notification volume expected — no special scalability handling
