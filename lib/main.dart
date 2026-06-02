@@ -13,5 +13,5 @@ void main() async {
       startLocale: const Locale('ar'),
       child: const AdminApp(),
     ),
-  );
+  );  
 }
