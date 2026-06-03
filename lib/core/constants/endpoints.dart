@@ -22,4 +22,5 @@ abstract class Endpoints {
   static const String bucketProducts = 'products';
   static const String bucketCategories = 'categories';
   static const String bucketNotifications = 'notifications';
+  static const String notifications = 'notifications';
 }

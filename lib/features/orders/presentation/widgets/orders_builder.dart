@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/features/orders/presentation/controller/orders_cubit/orders_state.dart';
+import '../controller/orders_cubit/orders_state.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/logging/logger.dart';
 import '../../../../core/utils/spacer.dart';

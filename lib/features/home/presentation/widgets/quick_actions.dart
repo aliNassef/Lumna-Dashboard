@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/utils/spacer.dart';
+import '../../../../core/utils/spacer.dart';
 import '../../../../core/utils/shape.dart';
 import '../../../category/presentation/views/manage_category_view.dart';
 import '../../../offers/presentation/views/manage_offers_view.dart';

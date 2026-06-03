@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lumna_admin/core/navigation/navigation.dart';
+import '../../../../core/navigation/navigation.dart';
 
 import '../../../../core/extensions/app_dialog_extension.dart';
 import '../../../../core/extensions/color_extensions.dart';

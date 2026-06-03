@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
+import '../translation/locale_keys.g.dart';
 
 import '../extensions/color_extensions.dart';
 import '../extensions/typography_extension.dart';

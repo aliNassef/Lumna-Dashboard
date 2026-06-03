@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lumna_admin/core/di/di.dart';
+import '../../../../core/di/di.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/di/di.dart';
-import 'package:lumna_admin/core/di/injection_container.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/di/injection_container.dart';
 
 import '../../../../core/utils/spacer.dart';
 import '../../data/models/offer_model.dart';

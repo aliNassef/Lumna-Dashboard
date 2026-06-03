@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/config/app_config.dart';
 import 'core/logging/navigation_observer.dart';
 import 'core/navigation/app_routes.dart';
+import 'core/navigation/navigator_key.dart';
 import 'core/utils/theme/app_theme.dart';
 import 'features/layout/presentation/views/layout_view.dart' show LayoutView;
 
@@ -20,6 +21,7 @@ class AdminApp extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           title: AppConfig.appName,
+          navigatorKey: navigatorKey,
           darkTheme: AppTheme.darkTheme,
           navigatorObservers: [AppNavigationObserver()],
           locale: context.locale,

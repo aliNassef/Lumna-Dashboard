@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
+import '../translation/locale_keys.g.dart';
 import '../../features/account/presentation/views/map_location_view.dart';
 import '../../features/notification/presentation/view/send_notification_view.dart';
+import '../../features/notification/presentation/view/notification_history_view.dart';
 import '../../features/offers/presentation/views/manage_offers_view.dart';
 import '../../features/orders/presentation/views/order_details_view.dart';
 import '../../features/products/data/models/product_args.dart';
@@ -40,6 +41,9 @@ class AppRouter {
         break;
       case SendNotificationView.routeName:
         page = const SendNotificationView();
+        break;
+      case NotificationHistoryView.routeName:
+        page = const NotificationHistoryView();
         break;
       case MapLocationView.routeName:
         page = const MapLocationView();

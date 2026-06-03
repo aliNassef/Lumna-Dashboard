@@ -2,6 +2,7 @@ export 'app_navigation.dart';
 export 'app_routes.dart';
 export 'nav_args.dart';
 export 'nav_animation_enum.dart';
+export 'navigator_key.dart';
 
 export '../../features/auth/presentation/views/login_view.dart';
 export '../../features/auth/presentation/views/signup_view.dart';

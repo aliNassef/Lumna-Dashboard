@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:lumna_admin/features/account/data/models/location_model.dart';
+import '../../../data/models/location_model.dart';
 
 import '../../../../../core/exceptions/failure.dart';
 import '../../../../../core/models/place_model.dart';

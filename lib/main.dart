@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
 import 'admin_app.dart';
 import 'core/config/app_config.dart';
 

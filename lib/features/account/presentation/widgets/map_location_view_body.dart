@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
+import '../../../../core/translation/locale_keys.g.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/models/place_model.dart';

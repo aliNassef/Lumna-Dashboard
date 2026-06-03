@@ -1,4 +1,4 @@
-import 'package:lumna_admin/features/account/data/models/location_model.dart';
+import '../models/location_model.dart';
 
 import '../../../../core/database/database.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lumna_admin/core/di/injection_container.dart';
-import 'package:lumna_admin/features/account/presentation/controller/address_cubit/address_cubit.dart';
+import '../../../../core/di/injection_container.dart';
+import '../controller/address_cubit/address_cubit.dart';
 
 import '../widgets/map_location_view_body.dart';
 

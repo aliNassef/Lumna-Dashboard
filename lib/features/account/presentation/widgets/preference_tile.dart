@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/extensions/color_extensions.dart';
-import 'package:lumna_admin/core/widgets/custom_switch.dart';
+import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/widgets/custom_switch.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/utils/shape.dart';

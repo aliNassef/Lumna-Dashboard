@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:lumna_admin/core/services/location/location_service_impl.dart';
-import 'package:lumna_admin/core/services/location/map_service.dart';
-import 'package:lumna_admin/features/account/presentation/controller/address_cubit/address_cubit.dart';
+import '../services/location/location_service_impl.dart';
+import '../services/location/map_service.dart';
+import '../../features/account/presentation/controller/address_cubit/address_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/account/data/datasource/location_remote_datasource.dart';
@@ -152,6 +152,7 @@ Future<void> _setupProductsFeature() async {
 Future<void> _setupNotificationFeature() async {
   injector.registerFactory(
     () => NotificationCubit(
+      remoteNotificationService: injector<RemoteNotificationService>(),
       notificationRepo: injector<NotificationRepo>(),
       imagePickerService: injector<ImagePickerService>(),
       storageService: injector<StorageService>(),
@@ -166,6 +167,7 @@ Future<void> _setupNotificationFeature() async {
 
   injector.registerLazySingleton<NotificationRemoteDataSource>(
     () => NotificationRemoteDataSourceImpl(
+      database: injector<Database>(),
       supabaseClient: injector<SupabaseClient>(),
     ),
   );

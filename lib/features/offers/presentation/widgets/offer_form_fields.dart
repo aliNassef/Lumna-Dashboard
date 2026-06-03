@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/widgets/custom_failure_widget.dart';
-import 'package:lumna_admin/features/products/presentation/controller/product_cubit/product_cubit.dart';
+import '../../../../core/widgets/custom_failure_widget.dart';
+import '../../../products/presentation/controller/product_cubit/product_cubit.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/utils/spacer.dart';
