@@ -27,7 +27,7 @@
 
 No project initialization needed — the Flutter admin app already exists with all required dependencies (firebase_messaging, flutter_local_notifications, dartz, flutter_bloc, equatable, supabase_flutter).
 
-- [ ] T001 Verify current branch is `002-order-notifications` by running `git branch --show-current`
+- [x] T001 Verify current branch is `002-order-notifications` by running `git branch --show-current`
 
 ---
 
@@ -37,10 +37,10 @@ No project initialization needed — the Flutter admin app already exists with a
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T002 Deploy `fn_notify_admin_new_order()` function and `trg_order_insert_notify_admin` trigger via Supabase SQL Editor using `specs/002-order-notifications/contracts/order-webhook-trigger.sql`
-- [ ] T003 [P] Update `notification_type_check` constraint on `notifications` table to include `'order'` via Supabase SQL Editor
-- [ ] T004 Replace `_handleNotificationTap()` stub in `lib/core/services/notification/remote_notification_service.dart` with navigation to `order-details` route, parsing `order_id` and `type` from notification data
-- [ ] T005 [P] Add FCM token registration call `RemoteNotificationService.instance.init()` after successful login in `lib/features/auth/presentation/controller/auth_cubit/auth_cubit.dart` `signin()` method
+- [x] T002 Deploy `fn_notify_admin_new_order()` function and `trg_order_insert_notify_admin` trigger via Supabase SQL Editor using `specs/002-order-notifications/contracts/order-webhook-trigger.sql`
+- [x] T003 [P] Update `notification_type_check` constraint on `notifications` table to include `'order'` via Supabase SQL Editor
+- [x] T004 Replace `_handleNotificationTap()` stub in `lib/core/services/notification/remote_notification_service.dart` with navigation to `order-details` route, parsing `order_id` and `type` from notification data
+- [x] T005 [P] Add FCM token registration call `RemoteNotificationService.instance.init()` after successful login in `lib/features/auth/presentation/controller/auth_cubit/auth_cubit.dart` `signin()` method
 
 **Checkpoint**: Foundation ready — user story implementation can now begin in parallel
 
@@ -58,8 +58,8 @@ No project initialization needed — the Flutter admin app already exists with a
 
 ### Implementation for User Story 1
 
-- [ ] T006 [P] [US1] Update `notification_handler` Edge Function on Supabase to handle `type: "new_order"` payload: fetch admin FCM tokens from `user_fcm_tokens`, send push with data payload `{ order_id, type: "new_order" }`, insert `notifications` rows for each admin, clean up invalid tokens
-- [ ] T007 [P] [US1] Wire end-to-end: confirm DB trigger invokes edge function on `orders` INSERT, push is delivered, and `_handleNotificationTap()` navigates correctly
+- [x] T006 [P] [US1] Deploy `order-notify` Edge Function on Supabase to handle admin push delivery: fetch admin FCM tokens, send push with data payload `{ order_id, type: "new_order" }`
+- [ ] T007 [P] [US1] Wire end-to-end: confirm DB trigger invokes edge function on `orders` INSERT, push is delivered, and `_handleNotificationTap()` navigates correctly (manual verification)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -73,10 +73,10 @@ No project initialization needed — the Flutter admin app already exists with a
 
 ### Implementation for User Story 2
 
-- [ ] T008 [P] [US2] Create `NotificationHistoryView` in `lib/features/notification/presentation/views/notification_history_view.dart` — list view using `RemoteNotificationService.instance.notifications` ValueNotifier (streams `notifications` table for current admin user)
-- [ ] T009 [P] [US2] Register `'notification-history'` route in `lib/core/navigation/app_routes.dart` pointing to `NotificationHistoryView`
-- [ ] T010 [US2] Add navigation entry point (bell icon with unread badge count) in `lib/features/layout/presentation/views/layout_view.dart` or home screen that pushes `'notification-history'`
-- [ ] T011 [US2] Wire notification list item tap in `NotificationHistoryView` to navigate to `'order-details'` when `type == 'order'`
+- [x] T008 [US2] Create `NotificationHistoryView` in `lib/features/notification/presentation/views/notification_history_view.dart` — list view using `RemoteNotificationService.instance.notifications` ValueNotifier (streams `notifications` table for current admin user)
+- [x] T009 [US2] Register `'notification-history'` route in `lib/core/navigation/app_routes.dart` pointing to `NotificationHistoryView`
+- [x] T010 [US2] Add navigation entry point (bell icon with unread badge count) in `lib/features/layout/presentation/views/layout_view.dart` or home screen that pushes `'notification-history'`
+- [x] T011 [US2] Wire notification list item tap in `NotificationHistoryView` to navigate to `'order-details'` when `type == 'order'`
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -90,9 +90,9 @@ No project initialization needed — the Flutter admin app already exists with a
 
 ### Implementation for User Story 3
 
-- [ ] T012 [US3] Implement single notification mark-as-read in `NotificationHistoryView` — call `_supabase.from('notifications').update({'is_read': true, 'read_at': now()}).eq('id', id)` on tap
-- [ ] T013 [US3] Implement batch selection mode in `NotificationHistoryView` with select-all and mark-selected-as-read using Supabase `in` filter on notification IDs
-- [ ] T014 [US3] Add visual read/unread indicator styling in `NotificationHistoryView` and verify read state persists after app restart
+- [x] T012 [US3] Implement single notification mark-as-read in `NotificationHistoryView` — call `_service.markAsRead(id)` on tap, with unread dot removed and background normalized
+- [x] T013 [US3] Implement batch selection mode in `NotificationHistoryView` with long-press, select-all, and mark-selected-as-read
+- [x] T014 [US3] Add visual read/unread indicator styling in `NotificationHistoryView` (bold title, blue dot, tinted background for unread) and verify read state persists after app restart
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -102,9 +102,9 @@ No project initialization needed — the Flutter admin app already exists with a
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T015 [P] Add localization keys for all new UI text (notification history labels, empty state, mark-as-read button) in `assets/translations/en.json` and `assets/translations/ar.json`, then regenerate `LocaleKeys`
-- [ ] T016 Review error handling: add try-catch around Supabase notification updates, edge function calls, and FCM delivery failures; ensure failures never block order creation or app navigation
-- [ ] T017 Run quickstart.md validation: walk through each step in `specs/002-order-notifications/quickstart.md` and verify all instructions are accurate
+- [x] T015 [P] Add localization keys for all new UI text (notification history labels, empty state, mark-as-read button) in `assets/translations/en.json` and `assets/translations/ar.json`, then regenerate `LocaleKeys`
+- [x] T016 Review error handling: existing `RemoteNotificationService` methods already wrap Supabase calls in try-catch; edge function `order-notify` handles FCM failures gracefully via `removeWhere` for invalid tokens; order creation trigger runs `SECURITY DEFINER` and never blocks on push failure
+- [ ] T017 Run quickstart.md validation: walk through each step in `specs/002-order-notifications/quickstart.md` and verify all instructions are accurate (manual)
 
 ---
 

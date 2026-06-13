@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:lumna_admin/features/notification/presentation/controller/get_unreaded_count_cubit/get_un_readed_count_cubit.dart';
 import '../services/location/location_service_impl.dart';
 import '../services/location/map_service.dart';
 import '../../features/account/presentation/controller/address_cubit/address_cubit.dart';
@@ -158,6 +159,8 @@ Future<void> _setupNotificationFeature() async {
       storageService: injector<StorageService>(),
     ),
   );
+
+  injector.registerFactory<GetUnReadedCountCubit>(()=> GetUnReadedCountCubit(notificationRepo: injector<NotificationRepo>(),),) ;
 
   injector.registerLazySingleton<NotificationRepo>(
     () => NotificationRepoImpl(

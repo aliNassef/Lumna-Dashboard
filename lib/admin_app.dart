@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lumna_admin/core/di/di.dart';
+import 'package:lumna_admin/core/di/injection_container.dart';
 
 import 'core/config/app_config.dart';
 import 'core/logging/navigation_observer.dart';
@@ -19,18 +22,29 @@ class AdminApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return MaterialApp(
-          title: AppConfig.appName,
-          navigatorKey: navigatorKey,
-          darkTheme: AppTheme.darkTheme,
-          navigatorObservers: [AppNavigationObserver()],
-          locale: context.locale,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          initialRoute: LayoutView.routeName,
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: AppRouter.onGenerateRoute,
-          theme: AppTheme.lightTheme,
+        return MultiBlocProvider(
+            providers: [
+                BlocProvider(
+                  create: (context) => injector<AccountCubit>(),
+        
+                ),
+                BlocProvider(
+                    create: (context) => injector<AuthCubit>(),
+                ),
+            ],
+                      child: MaterialApp(
+                    title: AppConfig.appName,
+                    navigatorKey: navigatorKey,
+                    darkTheme: AppTheme.darkTheme,
+                    navigatorObservers: [AppNavigationObserver()],
+                    locale: context.locale,
+                    localizationsDelegates: context.localizationDelegates,
+                    supportedLocales: context.supportedLocales,
+                    initialRoute: LayoutView.routeName,
+                    debugShowCheckedModeBanner: false,
+                    onGenerateRoute: AppRouter.onGenerateRoute,
+                    theme: AppTheme.lightTheme,
+                  ),
         );
       },
     );
