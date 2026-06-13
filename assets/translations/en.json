@@ -256,5 +256,11 @@
   "offer_date_error": "End date must be after start date",
   "start_date" : "Start Date",
   "end_date" : "End Date",
-  "press_again_to_exit": "Press again to exit"
+  "press_again_to_exit": "Press again to exit",
+  "no_notifications": "No notifications yet",
+  "mark_all_as_read": "Mark all as read",
+  "mark_as_read": "Mark as read",
+  "selected_count": "{count} selected",
+  "notification_order": "New Order",
+  "notification_order_body": "A new order has been placed"
 }

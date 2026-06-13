@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
+import '../translation/locale_keys.g.dart';
 
 enum PaymentMethod {
   cash,

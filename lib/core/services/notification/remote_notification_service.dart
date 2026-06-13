@@ -1,9 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../di/injection_container.dart';
 import '../../logging/logger.dart';
+import '../../navigation/navigation.dart';
+import '../../../features/orders/presentation/controller/orders_cubit/orders_cubit.dart';
+import '../../../features/orders/presentation/views/order_details_view.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -20,16 +23,13 @@ class RemoteNotificationService {
   final _supabase = Supabase.instance.client;
   final _localNotifications = FlutterLocalNotificationsPlugin();
 
-  final ValueNotifier<List<Map<String, dynamic>>> notifications = ValueNotifier(
-    [],
-  );
+
 
   Future<void> init() async {
     await _requestPermission();
     await _saveFcmToken();
     _listenToFcmEvents();
-    _listenToInAppNotifications();
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
 
   Future<void> _requestPermission() async {
@@ -112,20 +112,6 @@ class RemoteNotificationService {
     );
   }
 
-  void _listenToInAppNotifications() {
-    final userId = _supabase.auth.currentUser?.id;
-    if (userId == null) return;
-
-    _supabase
-        .from('notifications')
-        .stream(primaryKey: ['id'])
-        .eq('user_id', userId)
-        .order('created_at', ascending: false)
-        .listen((data) {
-          notifications.value = data;
-        });
-  }
-
   Future<bool> sendToAllUsers({
     required String title,
     required String body,
@@ -181,11 +167,24 @@ class RemoteNotificationService {
     }
   }
 
-  int get unreadCount =>
-      notifications.value.where((n) => n['is_read'] == false).length;
-
+  // int get unreadCount =>
+  //     notifications.value.where((n) => n['is_read'] == false).length;
+  // todo : handle it no need to pass order cubit
   void _handleNotificationTap(Map<String, dynamic> data) {
     Logger.info('Notification data: $data');
+    if (data['type'] == 'order' && data['order_id'] != null) {
+      final cubit = injector<OrdersCubit>();
+      navigatorKey.currentState?.pushNamed(
+        OrderDetailsView.routeName,
+        arguments: NavArgs(
+          animation: NavAnimation.fade,
+          data: {
+            'orderId': data['order_id'],
+            'orderCubit': cubit,
+          },
+        ),
+      );
+    }
   }
 
   Future<void> onLogout() async {

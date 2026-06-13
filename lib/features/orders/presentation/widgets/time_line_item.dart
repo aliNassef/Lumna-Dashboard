@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/utils/spacer.dart';
+import '../../../../core/utils/spacer.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
 

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:lumna_admin/core/extensions/app_dialog_extension.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
-import 'package:lumna_admin/features/account/data/models/location_model.dart';
+import '../../../../core/extensions/app_dialog_extension.dart';
+import '../../../../core/translation/locale_keys.g.dart';
+import '../../data/models/location_model.dart';
 
 import '../../../../core/navigation/app_navigation.dart';
 import '../../../../core/widgets/custom_button.dart';

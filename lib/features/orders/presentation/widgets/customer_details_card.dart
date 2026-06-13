@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/utils/spacer.dart';
-import 'package:lumna_admin/features/orders/data/models/order_details_model.dart';
+import '../../../../core/utils/spacer.dart';
+import '../../data/models/order_details_model.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';

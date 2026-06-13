@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/extensions/padding_extension.dart';
-import 'package:lumna_admin/features/orders/presentation/widgets/payment_info_card.dart';
-import 'package:lumna_admin/features/orders/presentation/widgets/shipping_address_card.dart';
+import '../../../../core/extensions/padding_extension.dart';
+import 'payment_info_card.dart';
+import 'shipping_address_card.dart';
 
 import '../../../../core/utils/spacer.dart';
 import '../../data/models/order_details_model.dart';

@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/extensions/color_extensions.dart';
-import 'package:lumna_admin/core/extensions/payment_method.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
-import 'package:lumna_admin/core/utils/shape.dart';
-import 'package:lumna_admin/core/utils/spacer.dart';
+import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/extensions/payment_method.dart';
+import '../../../../core/translation/locale_keys.g.dart';
+import '../../../../core/utils/shape.dart';
+import '../../../../core/utils/spacer.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
 

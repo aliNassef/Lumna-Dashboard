@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lumna_admin/core/extensions/mediaquery_size.dart';
+import '../../../../core/extensions/mediaquery_size.dart';
 
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/widgets/empty_list_data.dart';

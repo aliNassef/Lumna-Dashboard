@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
+import '../translation/locale_keys.g.dart';
 import '../extensions/color_extensions.dart';
 import '../extensions/typography_extension.dart';
 import '../utils/spacer.dart';

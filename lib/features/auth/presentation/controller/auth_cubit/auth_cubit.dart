@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/exceptions/failure.dart';
+import '../../../../../core/services/notification/remote_notification_service.dart';
 import '../../../data/models/signup_request.dart';
 import '../../../data/repo/auth_repo.dart';
 
@@ -27,7 +28,10 @@ class AuthCubit extends Cubit<AuthState> {
     );
     signinOrFailure.fold(
       (failure) => emit(AuthError(failure: failure)),
-      (success) => emit(AuthSuccess()),
+      (success) {
+        RemoteNotificationService.instance.init();
+        emit(AuthSuccess());
+      },
     );
   }
 }

@@ -267,5 +267,11 @@ abstract class  LocaleKeys {
   static const start_date = 'start_date';
   static const end_date = 'end_date';
   static const press_again_to_exit = 'press_again_to_exit';
+  static const no_notifications = 'no_notifications';
+  static const mark_all_as_read = 'mark_all_as_read';
+  static const mark_as_read = 'mark_as_read';
+  static const selected_count = 'selected_count';
+  static const notification_order = 'notification_order';
+  static const notification_order_body = 'notification_order_body';
 
 }

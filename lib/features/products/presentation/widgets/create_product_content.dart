@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
+import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/app_dialog_extension.dart';
 import '../../../layout/presentation/views/layout_view.dart';
 import '../controller/product_cubit/product_cubit.dart';

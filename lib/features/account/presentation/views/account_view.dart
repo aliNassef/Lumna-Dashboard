@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:lumna_admin/core/extensions/padding_extension.dart';
-import 'package:lumna_admin/core/translation/locale_keys.g.dart';
-import 'package:lumna_admin/core/utils/spacer.dart';
-import 'package:lumna_admin/core/widgets/custom_app_bar.dart';
+import '../../../../core/extensions/padding_extension.dart';
+import '../../../../core/translation/locale_keys.g.dart';
+import '../../../../core/utils/spacer.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 
 import '../widgets/account_view_body.dart';
 

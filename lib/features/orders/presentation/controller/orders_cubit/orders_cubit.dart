@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:lumna_admin/core/extensions/order_status.dart';
+import '../../../../../core/extensions/order_status.dart';
 
 import '../../../../../core/exceptions/failure.dart';
 import '../../../data/models/order_model.dart';
