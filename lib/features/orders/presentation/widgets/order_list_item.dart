@@ -36,7 +36,7 @@ class OrderListItem extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
-        return state.order.status == OrderStatus.pending
+        return state.order.status == OrderStatus.processing
             ? PendingOrderCardItem(
                 order: state.order,
                 isUpdating: state.isUpdating,

@@ -4,8 +4,8 @@ import '../translation/locale_keys.g.dart';
 
 enum OrderStatus {
   all,
-  pending,
   processing,
+  pending,
   shipped,
   delivered,
   cancelled,

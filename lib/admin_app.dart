@@ -23,28 +23,27 @@ class AdminApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return MultiBlocProvider(
-            providers: [
-                BlocProvider(
-                  create: (context) => injector<AccountCubit>(),
-        
-                ),
-                BlocProvider(
-                    create: (context) => injector<AuthCubit>(),
-                ),
-            ],
-                      child: MaterialApp(
-                    title: AppConfig.appName,
-                    navigatorKey: navigatorKey,
-                    darkTheme: AppTheme.darkTheme,
-                    navigatorObservers: [AppNavigationObserver()],
-                    locale: context.locale,
-                    localizationsDelegates: context.localizationDelegates,
-                    supportedLocales: context.supportedLocales,
-                    initialRoute: LayoutView.routeName,
-                    debugShowCheckedModeBanner: false,
-                    onGenerateRoute: AppRouter.onGenerateRoute,
-                    theme: AppTheme.lightTheme,
-                  ),
+          providers: [
+            BlocProvider(
+              create: (context) => injector<AccountCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => injector<AuthCubit>(),
+            ),
+          ],
+          child: MaterialApp(
+            title: AppConfig.appName,
+            navigatorKey: navigatorKey,
+            darkTheme: AppTheme.darkTheme,
+            navigatorObservers: [AppNavigationObserver()],
+            locale: context.locale,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            initialRoute: LayoutView.routeName,
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: AppRouter.onGenerateRoute,
+            theme: AppTheme.lightTheme,
+          ),
         );
       },
     );
