@@ -2,3 +2,4 @@ dart run easy_localization:generate -S assets/translations -f keys -o locale_key
 
 
 - get notification readed 
+// login with google 

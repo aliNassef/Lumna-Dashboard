@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/widgets/custom_switch.dart';

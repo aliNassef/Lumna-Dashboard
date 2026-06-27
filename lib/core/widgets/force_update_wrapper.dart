@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../services/remote_config.dart';
@@ -38,7 +37,9 @@ class _ForceUpdateWrapperState extends State<ForceUpdateWrapper> {
         canPop: false,
         child: AlertDialog(
           title: const Text('Update Required'),
-          content: const Text('A new version is required to continue using the app.'),
+          content: const Text(
+            'A new version is required to continue using the app.',
+          ),
           actions: [
             TextButton(
               onPressed: _launchStore,

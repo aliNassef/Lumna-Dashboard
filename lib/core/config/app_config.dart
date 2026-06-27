@@ -14,8 +14,8 @@ import '../helper/cache_helper.dart';
 import '../logging/custom_bloc_observer.dart';
 import '../logging/logger.dart';
 import '../services/auth/deep_link_service.dart';
-import '../services/notification/remote_notification_service.dart';
 import '../services/notification/notification_service.dart';
+import '../services/notification/remote_notification_service.dart';
 
 class AppConfig {
   static const String appName = 'LUMINA Admin';

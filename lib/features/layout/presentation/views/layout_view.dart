@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lazy_indexed_stack/flutter_lazy_indexed_stack.dart';
-import 'package:lumna_admin/core/di/injection_container.dart';
+import '../../../../core/di/injection_container.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/utils/spacer.dart';
@@ -77,7 +77,8 @@ class _LayoutViewState extends State<LayoutView> {
                 top: Spacing.large,
                 right: Spacing.extraLarge,
                 child: BlocProvider(
-                  create: (context) => injector<GetUnReadedCountCubit>()..getUnReadedCount(),
+                  create: (context) =>
+                      injector<GetUnReadedCountCubit>()..getUnReadedCount(),
                   child: const NotificationBellIcon(),
                 ),
               ),

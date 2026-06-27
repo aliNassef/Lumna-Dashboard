@@ -6,7 +6,6 @@ import '../../../../core/di/injection_container.dart';
 
 import '../../../../core/utils/spacer.dart';
 import '../../data/models/offer_model.dart';
-import '../controller/offer_cubit/offer_cubit.dart';
 import 'offer_card.dart';
 import 'offer_form_dialog.dart';
 

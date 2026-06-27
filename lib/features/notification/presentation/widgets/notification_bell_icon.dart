@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lumna_admin/features/notification/presentation/controller/get_unreaded_count_cubit/get_un_readed_count_cubit.dart';
+import '../controller/get_unreaded_count_cubit/get_un_readed_count_cubit.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/navigation/app_navigation.dart';

@@ -4,7 +4,6 @@ import '../translation/locale_keys.g.dart';
 import '../../features/account/presentation/views/map_location_view.dart';
 import '../../features/notification/presentation/view/send_notification_view.dart';
 import '../../features/notification/presentation/view/notification_history_view.dart';
-import '../../features/offers/presentation/views/manage_offers_view.dart';
 import '../../features/orders/presentation/views/order_details_view.dart';
 import '../../features/products/data/models/product_args.dart';
 import '../../features/products/presentation/views/edit_product_view.dart';
@@ -61,7 +60,9 @@ class AppRouter {
         page = EditProductView(productArgs: productArgs);
         break;
       default:
-        page = Scaffold(body: Center(child: Text(LocaleKeys.page_not_found.tr())));
+        page = Scaffold(
+          body: Center(child: Text(LocaleKeys.page_not_found.tr())),
+        );
     }
 
     return PageRouteBuilder(

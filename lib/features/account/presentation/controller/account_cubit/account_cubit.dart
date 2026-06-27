@@ -103,9 +103,11 @@ class AccountCubit extends Cubit<AccountState> {
     try {
       final avatarUrl = await storage.uploadImage(
         bucket: StoragePaths.avatarImagesBucket,
-        folder: StoragePaths.avatarImagesFolder,
+        // Storage RLS requires the first folder segment to be the user's id.
+        folder: currentProfile.id,
         bytes: await image.readAsBytes(),
         fileName: image.name,
+        upsert: true,
       );
 
       await updateProfile(currentProfile.copyWith(avatarUrl: avatarUrl));

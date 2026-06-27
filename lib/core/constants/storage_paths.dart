@@ -8,7 +8,6 @@ class StoragePaths {
   static const String categoryImagesFolder = 'categoriesImages';
 
   static const String avatarImagesBucket = 'avatars';
-  static const String avatarImagesFolder = 'accountAvatars';
   static const String bucketNotifications = 'notification';
   static const String bucketNotificationsImages = 'notificationsImages';
 }
