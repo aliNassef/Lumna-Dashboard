@@ -23,13 +23,11 @@ class RemoteNotificationService {
   final _supabase = Supabase.instance.client;
   final _localNotifications = FlutterLocalNotificationsPlugin();
 
-
-
   Future<void> init() async {
     await _requestPermission();
     await _saveFcmToken();
     _listenToFcmEvents();
-     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
 
   Future<void> _requestPermission() async {

@@ -9,14 +9,12 @@ class NotificationListTile extends StatelessWidget {
     super.key,
     required this.isReaded,
     required this.onTap,
-    required this.onLongPress,
-    required this.notification,
+     required this.notification,
   });
 
   final NotificationModel notification;
   final VoidCallback onTap;
-  final VoidCallback onLongPress;
-  final bool isReaded;
+   final bool isReaded;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -65,8 +63,7 @@ class NotificationListTile extends StatelessWidget {
                 ),
               ),
         onTap: onTap,
-        onLongPress: onLongPress,
-      ),
+       ),
     );
   }
 }

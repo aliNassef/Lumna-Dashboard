@@ -28,9 +28,8 @@ class NotificationListView extends StatelessWidget {
                 notification: n,
                 isReaded: n.isRead,
                 onTap: () {
-                   context.read<NotificationCubit>().markAsRead(n.id);
-                 },
-                onLongPress: () {},
+                  context.read<NotificationCubit>().markAsRead(n.id);
+                },
               );
             },
           ),
