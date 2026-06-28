@@ -2,11 +2,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../di/injection_container.dart';
 import '../../logging/logger.dart';
-import '../../navigation/navigation.dart';
-import '../../../features/orders/presentation/controller/orders_cubit/orders_cubit.dart';
-import '../../../features/orders/presentation/views/order_details_view.dart';
+
+/// Called when the user taps a notification, with its raw `data` payload.
+///
+/// Each feature registers a handler per notification `type` so the service
+/// stays agnostic of any feature (orders, offers, ...).
+/// See [RemoteNotificationService.registerTapHandler].
+typedef NotificationTapHandler = void Function(Map<String, dynamic> data);
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -22,6 +25,15 @@ class RemoteNotificationService {
   final _fcm = FirebaseMessaging.instance;
   final _supabase = Supabase.instance.client;
   final _localNotifications = FlutterLocalNotificationsPlugin();
+
+  /// Tap handlers keyed by the notification `type` (e.g. `'order'`).
+  final Map<String, NotificationTapHandler> _tapHandlers = {};
+
+  /// Registers the navigation/behavior to run when a notification of [type]
+  /// is tapped. Call this from the composition root so the service itself
+  /// never depends on any feature.
+  void registerTapHandler(String type, NotificationTapHandler handler) =>
+      _tapHandlers[type] = handler;
 
   Future<void> init() async {
     await _requestPermission();
@@ -165,24 +177,11 @@ class RemoteNotificationService {
     }
   }
 
-  // int get unreadCount =>
-  //     notifications.value.where((n) => n['is_read'] == false).length;
-  // todo : handle it no need to pass order cubit
   void _handleNotificationTap(Map<String, dynamic> data) {
-    Logger.info('Notification data: $data');
-    if (data['type'] == 'order' && data['order_id'] != null) {
-      final cubit = injector<OrdersCubit>();
-      navigatorKey.currentState?.pushNamed(
-        OrderDetailsView.routeName,
-        arguments: NavArgs(
-          animation: NavAnimation.fade,
-          data: {
-            'orderId': data['order_id'],
-            'orderCubit': cubit,
-          },
-        ),
-      );
-    }
+    Logger.info('Notification tapped: $data');
+    final type = data['type'] as String?;
+    if (type == null) return;
+    _tapHandlers[type]?.call(data);
   }
 
   Future<void> onLogout() async {

@@ -17,6 +17,7 @@ import '../logging/logger.dart';
 import '../services/auth/deep_link_service.dart';
 import '../services/notification/notification_service.dart';
 import '../services/notification/remote_notification_service.dart';
+import '../../features/orders/presentation/order_notification_handler.dart';
 
 class AppConfig {
   static const String appName = 'LUMINA Admin';
@@ -54,7 +55,9 @@ class AppConfig {
     await ScreenUtil.ensureScreenSize();
     await CacheHelper.init();
     await injector<NotificationService>().init();
-    await injector<RemoteNotificationService>().init();
+    final remoteNotifications = injector<RemoteNotificationService>();
+    remoteNotifications.registerTapHandler('order', handleOrderNotificationTap);
+    await remoteNotifications.init();
     MapboxOptions.setAccessToken(
       Env.mabBoxAccessKey,
     );
