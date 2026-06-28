@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lumna_admin/env/env.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show MapboxOptions;
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -43,8 +44,8 @@ class AppConfig {
     );
 
     await Supabase.initialize(
-      url: 'https://wwwuzefuhknjtyxcztdk.supabase.co',
-      anonKey: 'sb_publishable_AfdvIUW9fbKdENs0rz_qbA_KxH4P9ps',
+      url: Env.supbabseUrl,
+      anonKey: Env.anonKey,
       authOptions: const FlutterAuthClientOptions(
         authFlowType: AuthFlowType.pkce,
       ),
@@ -55,7 +56,7 @@ class AppConfig {
     await injector<NotificationService>().init();
     await injector<RemoteNotificationService>().init();
     MapboxOptions.setAccessToken(
-      'pk.eyJ1IjoiYWxpLW5hc3NlZiIsImEiOiJjbW94NndiOTkwMXBuMnNzZHZ0aTVpZHppIn0.-VfAJu3mtd7qDd9GSHRDbg',
+      Env.mabBoxAccessKey,
     );
     DeepLinkService.instance.init();
 
