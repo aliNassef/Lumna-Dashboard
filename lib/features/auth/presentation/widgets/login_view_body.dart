@@ -138,9 +138,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           const Gap(30),
           const OrDvider(),
           const Gap(40),
-          BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) {},
-            child: const ContinueWithGoogleButton(),
+          ContinueWithGoogleButton(
+            onTap: () => context.read<AuthCubit>().signInWithGoogle(),
           ),
           const Gap(40),
           HavingAccountQuestion(
