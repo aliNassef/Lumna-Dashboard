@@ -2,6 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/constants/endpoints.dart';
 import '../../../../core/database/database.dart';
+import '../../../../core/exceptions/error_mapper.dart';
 import '../../../../core/exceptions/server_exception.dart';
 import '../models/notification_model.dart';
 import '../models/send_notification_request.dart';
@@ -33,10 +34,8 @@ class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
       throw ServerException(
         e.details?.toString() ?? e.reasonPhrase ?? e.toString(),
       );
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException(e.toString());
+      throw ServerException(e.toMessage());
     }
   }
 

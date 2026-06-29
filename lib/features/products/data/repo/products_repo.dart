@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/exceptions/error_mapper.dart';
 import '../../../../core/exceptions/failure.dart';
-import '../../../../core/exceptions/server_exception.dart';
 import '../datasource/products_remote_datasource.dart';
 import '../models/product_model.dart';
 
@@ -22,8 +22,8 @@ class ProductsRepoImpl implements ProductsRepo {
     try {
       final products = await _remoteDataSource.getProducts();
       return Right(products);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -32,8 +32,8 @@ class ProductsRepoImpl implements ProductsRepo {
     try {
       await _remoteDataSource.addProduct(product);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -42,8 +42,8 @@ class ProductsRepoImpl implements ProductsRepo {
     try {
       await _remoteDataSource.updateProduct(product);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -52,8 +52,8 @@ class ProductsRepoImpl implements ProductsRepo {
     try {
       await _remoteDataSource.deleteProduct(id);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/exceptions/error_mapper.dart';
 import '../../../../core/exceptions/failure.dart';
-import '../../../../core/exceptions/server_exception.dart';
 import '../datasource/location_remote_datasource.dart';
 import '../models/location_model.dart';
 
@@ -19,8 +19,8 @@ class LocationRepoImpl implements LocationRepo {
     try {
       await _locationRemoteDataSource.addStoreLocation(location);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 }
