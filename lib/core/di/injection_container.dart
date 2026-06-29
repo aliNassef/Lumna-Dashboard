@@ -83,6 +83,7 @@ Future<void> _setupAuthFeature() async {
   injector.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(
       authService: injector<AuthService>(),
+      database: injector<Database>(),
     ),
   );
 }

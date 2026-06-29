@@ -95,6 +95,15 @@ abstract class  LocaleKeys {
   static const error_failed_to_upload_image = 'error_failed_to_upload_image';
   static const error_field_required = 'error_field_required';
   static const error_comment_required = 'error_comment_required';
+  static const error_generic = 'error_generic';
+  static const error_network = 'error_network';
+  static const error_timeout = 'error_timeout';
+  static const error_duplicate = 'error_duplicate';
+  static const error_not_found = 'error_not_found';
+  static const error_permission = 'error_permission';
+  static const error_invalid_credentials = 'error_invalid_credentials';
+  static const error_email_in_use = 'error_email_in_use';
+  static const error_unauthorized = 'error_unauthorized';
   static const field_description_hint = 'field_description_hint';
   static const validator_required = 'validator_required';
   static const validator_email = 'validator_email';
