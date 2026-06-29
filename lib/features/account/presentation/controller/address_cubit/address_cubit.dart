@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../data/models/location_model.dart';
 
+import '../../../../../core/exceptions/error_mapper.dart';
 import '../../../../../core/exceptions/failure.dart';
 import '../../../../../core/models/place_model.dart';
 import '../../../../../core/services/location/location_service.dart';
@@ -35,7 +36,7 @@ class AddressCubit extends Cubit<AddressState> {
     } catch (e) {
       emit(
         GetCurrentUserPositionFailure(
-          failure: Failure(errMessage: e.toString()),
+          failure: Failure(errMessage: e.toMessage()),
         ),
       );
     }
@@ -53,7 +54,7 @@ class AddressCubit extends Cubit<AddressState> {
     } catch (e) {
       emit(
         SearchPlacesFailure(
-          Failure(errMessage: e.toString()),
+          Failure(errMessage: e.toMessage()),
         ),
       );
     }
@@ -70,7 +71,7 @@ class AddressCubit extends Cubit<AddressState> {
     } catch (e) {
       emit(
         GetMarkerAddressFailure(
-          Failure(errMessage: e.toString()),
+          Failure(errMessage: e.toMessage()),
         ),
       );
     }

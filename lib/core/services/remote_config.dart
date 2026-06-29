@@ -1,5 +1,8 @@
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../exceptions/error_mapper.dart';
+import '../logging/logger.dart';
 //! remote config for forcing update app.
 abstract interface class RemoteConfig {
   Future<bool> shouldForceUpdate();
@@ -14,8 +17,9 @@ class SupabaseRemoteConfigImpl implements RemoteConfig {
       final minVersion = await _fetchMinVersion();
       final currentVersion = await _getCurrentAppVersion();
       return _isVersionLower(currentVersion, minVersion);
-    } catch (_) {
-      return false; 
+    } catch (e) {
+      Logger.error('Failed to resolve remote config: ${e.toMessage()}');
+      return false;
     }
   }
 

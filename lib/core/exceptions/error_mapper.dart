@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:lumna_admin/core/exceptions/server_exception.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -21,7 +22,20 @@ abstract final class ErrorMapper {
       StorageException _ => LocaleKeys.error_generic.tr(),
       SocketException _ => LocaleKeys.error_network.tr(),
       TimeoutException _ => LocaleKeys.error_timeout.tr(),
+      DioException e => _fromDio(e),
       _ => _fromUnknown(error),
+    };
+  }
+
+  static String _fromDio(DioException e) {
+    return switch (e.type) {
+      DioExceptionType.connectionTimeout ||
+      DioExceptionType.sendTimeout ||
+      DioExceptionType.receiveTimeout => LocaleKeys.error_timeout.tr(),
+      DioExceptionType.connectionError => LocaleKeys.error_network.tr(),
+      DioExceptionType.unknown when e.error is SocketException =>
+        LocaleKeys.error_network.tr(),
+      _ => LocaleKeys.error_generic.tr(),
     };
   }
 

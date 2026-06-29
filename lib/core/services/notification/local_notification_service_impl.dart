@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import '../../exceptions/error_mapper.dart';
 import '../../logging/logger.dart';
 import '../../models/show_notification_model.dart';
 import 'notification_service.dart';
@@ -36,7 +37,7 @@ class LocalNotificationServiceImpl implements NotificationService {
       Logger.info('Local notifications initialized ✅');
     } catch (error, stackTrace) {
       Logger.error(
-        'Failed to initialize local notifications',
+        'Failed to initialize local notifications: ${error.toMessage()}',
         error: error,
         stackTrace: stackTrace,
       );
@@ -76,7 +77,7 @@ class LocalNotificationServiceImpl implements NotificationService {
       return isGranted;
     } catch (error, stackTrace) {
       Logger.error(
-        'Failed to request notification permissions',
+        'Failed to request notification permissions: ${error.toMessage()}',
         error: error,
         stackTrace: stackTrace,
       );
@@ -110,7 +111,7 @@ class LocalNotificationServiceImpl implements NotificationService {
       Logger.info('Notification shown with id: ${notification.id}');
     } catch (error, stackTrace) {
       Logger.error(
-        'Failed to show notification',
+        'Failed to show notification: ${error.toMessage()}',
         error: error,
         stackTrace: stackTrace,
       );

@@ -2,6 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../exceptions/error_mapper.dart';
 import '../../logging/logger.dart';
 
 /// Called when the user taps a notification, with its raw `data` payload.
@@ -71,7 +72,7 @@ class RemoteNotificationService {
       Logger.info('FCM token saved');
     } catch (e, stackTrace) {
       Logger.error(
-        'Failed to save FCM token',
+        'Failed to save FCM token: ${e.toMessage()}',
         error: e,
         stackTrace: stackTrace,
       );
@@ -135,7 +136,7 @@ class RemoteNotificationService {
       return true;
     } catch (e, stackTrace) {
       Logger.error(
-        'Failed to send notification',
+        'Failed to send notification: ${e.toMessage()}',
         error: e,
         stackTrace: stackTrace,
       );
@@ -151,7 +152,7 @@ class RemoteNotificationService {
           .eq('id', notificationId);
     } catch (e, stackTrace) {
       Logger.error(
-        'Failed to mark notification as read',
+        'Failed to mark notification as read: ${e.toMessage()}',
         error: e,
         stackTrace: stackTrace,
       );
@@ -170,7 +171,7 @@ class RemoteNotificationService {
           .eq('is_read', false);
     } catch (e, stackTrace) {
       Logger.error(
-        'Failed to mark all notifications as read',
+        'Failed to mark all notifications as read: ${e.toMessage()}',
         error: e,
         stackTrace: stackTrace,
       );
@@ -193,7 +194,7 @@ class RemoteNotificationService {
       await _supabase.from('user_fcm_tokens').delete().eq('user_id', userId);
     } catch (e, stackTrace) {
       Logger.error(
-        'Failed to clear FCM token',
+        'Failed to clear FCM token: ${e.toMessage()}',
         error: e,
         stackTrace: stackTrace,
       );
