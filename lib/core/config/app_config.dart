@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lumna_admin/core/services/notification/notification_type.dart';
 import 'package:lumna_admin/env/env.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show MapboxOptions;
@@ -56,7 +57,10 @@ class AppConfig {
     await CacheHelper.init();
     await injector<NotificationService>().init();
     final remoteNotifications = injector<RemoteNotificationService>();
-    remoteNotifications.registerTapHandler('order', handleOrderNotificationTap);
+    remoteNotifications.registerTapHandler(
+      NotificationType.order.name,
+      handleOrderNotificationTap,
+    );
     await remoteNotifications.init();
     MapboxOptions.setAccessToken(
       Env.mabBoxAccessKey,
