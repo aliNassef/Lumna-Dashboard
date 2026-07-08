@@ -7,10 +7,8 @@ import 'core/di/injection_container.dart';
 
 import 'core/config/app_config.dart';
 import 'core/logging/navigation_observer.dart';
-import 'core/navigation/app_routes.dart';
-import 'core/navigation/navigator_key.dart';
+import 'core/navigation/navigation.dart';
 import 'core/utils/theme/app_theme.dart';
-import 'features/layout/presentation/views/layout_view.dart' show LayoutView;
 
 class AdminApp extends StatelessWidget {
   const AdminApp({super.key});
@@ -39,7 +37,9 @@ class AdminApp extends StatelessWidget {
             locale: context.locale,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
-            initialRoute: LayoutView.routeName,
+            initialRoute: injector<AuthRepo>().getCurrentUser() != null
+                ? LayoutView.routeName
+                : LoginView.routeName,
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRouter.onGenerateRoute,
             theme: AppTheme.lightTheme,

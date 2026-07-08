@@ -10,6 +10,7 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show MapboxOptions;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../features/auth/data/repo/auth_repo.dart';
 import '../../firebase_options.dart';
 import '../di/injection_container.dart';
 import '../helper/cache_helper.dart';
@@ -53,6 +54,7 @@ class AppConfig {
       ),
     );
     await setupLocator();
+    await _enforceAdminSession();
     await ScreenUtil.ensureScreenSize();
     await CacheHelper.init();
     await injector<NotificationService>().init();
@@ -71,5 +73,18 @@ class AppConfig {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setSystemUIOverlayStyle(lightOverlayStyle);
     Logger.info('App Started ✅');
+  }
+
+  /// Clears any restored session that does not belong to an admin so the auth
+  /// gate routes non-admins back to login on cold start.
+  static Future<void> _enforceAdminSession() async {
+    final authRepo = injector<AuthRepo>();
+    if (authRepo.getCurrentUser() == null) return;
+
+    final adminOrFailure = await authRepo.isCurrentUserAdmin();
+    final isAdmin = adminOrFailure.getOrElse(() => false);
+    if (!isAdmin) {
+      await authRepo.signOut();
+    }
   }
 }

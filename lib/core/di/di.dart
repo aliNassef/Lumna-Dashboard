@@ -6,6 +6,7 @@ export '../../features/account/presentation/controller/account_cubit/account_cub
 export '../../features/auth/data/datasource/auth_remote_datasource.dart';
 export '../../features/auth/data/repo/auth_repo.dart';
 export '../../features/auth/presentation/controller/auth_cubit/auth_cubit.dart';
+export '../../features/auth/presentation/controller/forgot_password_cubit/forgot_password_cubit.dart';
 export '../../features/category/data/datasource/category_remote_datasource.dart';
 export '../../features/category/data/repo/category_repo.dart';
 export '../../features/category/presentation/controller/category_cubit/category_cubit.dart';

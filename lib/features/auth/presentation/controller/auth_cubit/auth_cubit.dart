@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/exceptions/failure.dart';
+import '../../../../../core/navigation/navigation.dart';
 import '../../../../../core/services/auth/deep_link_service.dart';
 import '../../../../../core/services/notification/remote_notification_service.dart';
 import '../../../../../core/translation/locale_keys.g.dart';
@@ -34,12 +35,9 @@ class AuthCubit extends Cubit<AuthState> {
       email,
       password,
     );
-    signinOrFailure.fold(
-      (failure) => emit(AuthError(failure: failure)),
-      (success) {
-        RemoteNotificationService.instance.init();
-        emit(AuthSuccess());
-      },
+    await signinOrFailure.fold(
+      (failure) async => emit(AuthError(failure: failure)),
+      (_) => _enforceAdminAndEmitSuccess(),
     );
   }
 
@@ -55,8 +53,23 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> _onDeepLink(DeepLinkResult result) async {
-    if (result.type != DeepLinkType.googleLogin) return;
+    switch (result.type) {
+      case DeepLinkType.googleLogin:
+        await _enforceAdminAndEmitSuccess();
+      case DeepLinkType.resetPassword:
+        navigatorKey.currentState?.pushNamed(UpdatePasswordView.routeName);
+      case DeepLinkType.emailConfirmation:
+      case DeepLinkType.unknown:
+        break;
+    }
+  }
 
+  /// Verifies the current user is an admin, then finalizes a successful login.
+  ///
+  /// Emits [AuthSuccess] for admins (after initializing push notifications) and
+  /// signs out non-admins with an [AuthError]. Shared by email/password sign in
+  /// and the Google OAuth deep-link callback.
+  Future<void> _enforceAdminAndEmitSuccess() async {
     final adminOrFailure = await authRepo.isCurrentUserAdmin();
     await adminOrFailure.fold(
       (failure) async {

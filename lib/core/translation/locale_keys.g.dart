@@ -70,6 +70,13 @@ abstract class  LocaleKeys {
   static const auth_continue_google = 'auth_continue_google';
   static const auth_create_account = 'auth_create_account';
   static const auth_join = 'auth_join';
+  static const auth_reset_password_title = 'auth_reset_password_title';
+  static const auth_reset_password_subtitle = 'auth_reset_password_subtitle';
+  static const auth_send_reset_link = 'auth_send_reset_link';
+  static const auth_reset_email_sent = 'auth_reset_email_sent';
+  static const auth_new_password = 'auth_new_password';
+  static const auth_update_password = 'auth_update_password';
+  static const auth_password_updated = 'auth_password_updated';
   static const create_account = 'create_account';
   static const join_community = 'join_community';
   static const or = 'or';
