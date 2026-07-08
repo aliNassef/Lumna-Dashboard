@@ -13,10 +13,12 @@ class OrderModel extends Equatable {
   final String? customerImage;
   final num totalAmount;
   final int itemsCount;
+  final int orderNumber;
 
   const OrderModel({
     required this.id,
     required this.createdAt,
+    required this.orderNumber,
     required this.status,
     required this.customerName,
     required this.customerEmail,
@@ -31,6 +33,7 @@ class OrderModel extends Equatable {
     final rawStatus = (map['status'] as String? ?? '').trim().toLowerCase();
 
     return OrderModel(
+      orderNumber: map['order_no'] as int? ?? 0,
       id: map['id'] as String,
       createdAt: DateTime.parse(map['created_at'] as String),
       status: OrderStatus.values.byName(
@@ -64,6 +67,7 @@ class OrderModel extends Equatable {
   }) {
     return OrderModel(
       id: id ?? this.id,
+      orderNumber: orderNumber,
       createdAt: createdAt ?? this.createdAt,
       status: status ?? this.status,
       customerName: customerName ?? this.customerName,
@@ -90,6 +94,7 @@ class OrderModel extends Equatable {
 final List<OrderModel> dummyOrders = [
   OrderModel(
     id: '1aaaaaaa',
+    orderNumber: 2,
     createdAt: DateTime.now(),
     status: OrderStatus.pending,
     customerName: 'John Doe',
@@ -99,6 +104,7 @@ final List<OrderModel> dummyOrders = [
     itemsCount: 2,
   ),
   OrderModel(
+    orderNumber: 2,
     id: '111111111',
     createdAt: DateTime.now(),
     status: OrderStatus.pending,
@@ -109,6 +115,7 @@ final List<OrderModel> dummyOrders = [
     itemsCount: 2,
   ),
   OrderModel(
+    orderNumber: 2,
     id: '111111111',
     createdAt: DateTime.now(),
     status: OrderStatus.pending,
@@ -119,6 +126,7 @@ final List<OrderModel> dummyOrders = [
     itemsCount: 2,
   ),
   OrderModel(
+    orderNumber: 2,
     id: '11111111111',
     createdAt: DateTime.now(),
     status: OrderStatus.pending,
@@ -129,6 +137,7 @@ final List<OrderModel> dummyOrders = [
     itemsCount: 2,
   ),
   OrderModel(
+    orderNumber: 2,
     id: '11111111',
     createdAt: DateTime.now(),
     status: OrderStatus.pending,

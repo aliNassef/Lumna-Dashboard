@@ -25,13 +25,6 @@ class OrderDetailsViewBody extends StatelessWidget {
                 Spacing.extraLarge,
               ),
         ),
-        // todo :change order status time line.
-        // const SliverGap(Spacing.extraLarge),
-        // SliverToBoxAdapter(
-        //   child: const OrderTimelineCard().withHorizontalPadding(
-        //     Spacing.extraLarge,
-        //   ),
-        // ),
         const SliverGap(Spacing.extraLarge),
         SliverToBoxAdapter(
           child:

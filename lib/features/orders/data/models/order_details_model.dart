@@ -9,6 +9,7 @@ import 'order_item_model.dart';
 
 class OrderDetailsModel extends Equatable {
   final String id;
+  final int orderNo;
   final DateTime createdAt;
   final OrderStatus status;
   final double totalAmount;
@@ -28,6 +29,7 @@ class OrderDetailsModel extends Equatable {
 
   const OrderDetailsModel({
     required this.id,
+    required this.orderNo,
     required this.createdAt,
     required this.status,
     required this.totalAmount,
@@ -52,6 +54,7 @@ class OrderDetailsModel extends Equatable {
     final itemsRaw = (map['order_items'] as List?) ?? [];
 
     return OrderDetailsModel(
+      orderNo: map['order_no'] as int,
       id: map['id']?.toString() ?? '',
       createdAt: _parseDate(map['created_at']),
       status: _parseStatus(map['status']),
@@ -166,6 +169,7 @@ class OrderDetailsModel extends Equatable {
 
 final dummyOrderDetails = OrderDetailsModel(
   createdAt: DateTime.now(),
+  orderNo: 1555,
   customerName: 'Admin',
   id: 'aaaaaaaaaa',
   paymentMethod: PaymentMethod.cash,

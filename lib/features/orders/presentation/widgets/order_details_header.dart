@@ -58,7 +58,7 @@ class OrderDetailHeader extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Order #${orderDetailsModel.id.substring(0, 6)}',
+                'Order #${orderDetailsModel.orderNo}',
                 style: context.typography.bold32.copyWith(height: 1.1),
               ),
             ),

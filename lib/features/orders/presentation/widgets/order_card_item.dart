@@ -64,7 +64,7 @@ class OrderCardItem extends StatelessWidget {
                   ),
                   const Gap(8),
                   Text(
-                    '#${order.id.substring(0, 6)}',
+                    '#${order.orderNumber}',
                     style: context.typography.bold24,
                   ),
                   Text(

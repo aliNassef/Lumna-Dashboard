@@ -53,6 +53,8 @@ class OrdersRepoImpl implements OrdersRepo {
       return Right(order);
     } on ServerException catch (e) {
       return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toString()));
     }
   }
 

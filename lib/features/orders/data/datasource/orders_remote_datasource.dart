@@ -1,5 +1,6 @@
 import '../../../../core/constants/endpoints.dart';
 import '../../../../core/database/database.dart';
+import '../../../../core/exceptions/server_exception.dart';
 import '../../../../core/extensions/order_status.dart';
 import '../models/order_details_model.dart';
 import '../models/order_model.dart';
@@ -58,7 +59,7 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
     final response = await _database.get(
       path: Endpoints.orders,
       columns:
-          'id, created_at, status, total_amount, profiles(full_name, email, avatar_url), order_items(id)',
+          'id, order_no, created_at, status, total_amount, profiles(full_name, email, avatar_url), order_items(id)',
       orderBy: 'created_at',
       ascending: false,
     );
@@ -71,10 +72,14 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
     final response = await _database.get(
       path: Endpoints.orders,
       columns:
-          'id, user_id, created_at, status, total_amount, payment_method, profiles(full_name, email, avatar_url), addresses!orders_address_id_fkey(*), order_items(id,quantity,unit_price,product_name,products(name, price, images))',
+          'id, order_no, user_id, created_at, status, total_amount, payment_method, profiles(full_name, email, avatar_url), addresses!orders_address_id_fkey(*), order_items(id,quantity,unit_price,product_name,products(name, price, images))',
       filterColumn: 'id',
       filterValue: orderId,
     );
+
+    if (response.isEmpty) {
+      throw const ServerException('Order not found');
+    }
 
     final orderMap = Map<String, dynamic>.from(response.first);
     final hasAddress = _hasAddressData(orderMap['addresses']);
