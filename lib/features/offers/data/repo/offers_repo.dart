@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/exceptions/error_mapper.dart';
 import '../../../../core/exceptions/failure.dart';
-import '../../../../core/exceptions/server_exception.dart';
 import '../datasource/offers_remote_datasource.dart';
 import '../models/offer_model.dart';
 
@@ -22,8 +22,8 @@ class OffersRepoImpl implements OffersRepo {
     try {
       final offers = await _remoteDataSource.getOffers();
       return Right(offers);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -32,8 +32,8 @@ class OffersRepoImpl implements OffersRepo {
     try {
       await _remoteDataSource.addOffer(offer);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -42,8 +42,8 @@ class OffersRepoImpl implements OffersRepo {
     try {
       await _remoteDataSource.updateOffer(offer);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -52,8 +52,8 @@ class OffersRepoImpl implements OffersRepo {
     try {
       await _remoteDataSource.deleteOffer(id);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 }

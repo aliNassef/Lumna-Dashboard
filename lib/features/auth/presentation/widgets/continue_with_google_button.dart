@@ -14,12 +14,15 @@ import '../../../../core/utils/spacer.dart';
 class ContinueWithGoogleButton extends StatelessWidget {
   const ContinueWithGoogleButton({
     super.key,
+    this.onTap,
   });
+
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(
           vertical: Spacing.large,

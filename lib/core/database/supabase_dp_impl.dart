@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../exceptions/error_mapper.dart';
 import '../exceptions/server_exception.dart';
 import 'database.dart';
 
@@ -48,10 +49,8 @@ class SupabaseDpImpl implements Database {
 
       final data = await (transformQuery ?? filterQuery);
       return List<Map<String, dynamic>>.from(data);
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -63,10 +62,8 @@ class SupabaseDpImpl implements Database {
   }) async {
     try {
       await _client.from(path).update(data).eq('id', id);
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -74,10 +71,8 @@ class SupabaseDpImpl implements Database {
   Future<void> delete({required String path, required String id}) async {
     try {
       await _client.from(path).delete().eq('id', id);
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -94,10 +89,8 @@ class SupabaseDpImpl implements Database {
       }
 
       await query;
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -108,10 +101,8 @@ class SupabaseDpImpl implements Database {
   }) async {
     try {
       await _client.from(path).insert(data);
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -123,10 +114,8 @@ class SupabaseDpImpl implements Database {
     try {
       final response = await _client.from(path).insert(data).select().single();
       return Map<String, dynamic>.from(response);
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -143,10 +132,8 @@ class SupabaseDpImpl implements Database {
             data,
             onConflict: onConflict,
           );
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -164,10 +151,8 @@ class SupabaseDpImpl implements Database {
       }
 
       await query;
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -179,10 +164,8 @@ class SupabaseDpImpl implements Database {
     try {
       final response = await _client.rpc(function, params: params);
       return response as T;
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -208,10 +191,8 @@ class SupabaseDpImpl implements Database {
         filtered = filtered.order(orderBy, ascending: ascending);
       }
       return filtered;
-    } on PostgrestException catch (e) {
-      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException('Unexpected error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 }
