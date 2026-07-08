@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/exceptions/error_mapper.dart';
 import '../../../../core/exceptions/failure.dart';
-import '../../../../core/exceptions/server_exception.dart';
 import '../datasource/account_remote_datasource.dart';
 import '../models/account_model.dart';
 
@@ -20,8 +20,8 @@ class AccountRepoImpl implements AccountRepo {
     try {
       final profile = await _remoteDataSource.getCurrentProfile();
       return Right(profile);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -30,8 +30,8 @@ class AccountRepoImpl implements AccountRepo {
     try {
       await _remoteDataSource.updateProfile(profile);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 }

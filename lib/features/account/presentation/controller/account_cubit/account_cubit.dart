@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/constants/storage_paths.dart';
+import '../../../../../core/exceptions/error_mapper.dart';
 import '../../../../../core/exceptions/failure.dart';
-import '../../../../../core/exceptions/server_exception.dart';
 import '../../../../../core/services/image_picker_service.dart';
 import '../../../../../core/services/storage/storage_service.dart';
 import '../../../../auth/data/repo/auth_repo.dart';
@@ -111,18 +111,11 @@ class AccountCubit extends Cubit<AccountState> {
       );
 
       await updateProfile(currentProfile.copyWith(avatarUrl: avatarUrl));
-    } on ServerException catch (e) {
-      emit(
-        state.copyWith(
-          status: AccountStatus.updateProfileFailure,
-          failure: Failure(errMessage: e.message),
-        ),
-      );
     } catch (e) {
       emit(
         state.copyWith(
           status: AccountStatus.updateProfileFailure,
-          failure: Failure(errMessage: e.toString()),
+          failure: Failure(errMessage: e.toMessage()),
         ),
       );
     }

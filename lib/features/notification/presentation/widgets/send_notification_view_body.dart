@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/services/notification/notification_type.dart';
 import '../../../../core/extensions/app_dialog_extension.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/translation/locale_keys.g.dart';
@@ -110,11 +111,13 @@ class _SendNotificationViewBodyState extends State<SendNotificationViewBody> {
                       ),
                       items: [
                         DropdownMenuItem(
-                          value: 'general',
-                          child: Text(LocaleKeys.notification_type_general.tr()),
+                          value: NotificationType.general.name,
+                          child: Text(
+                            LocaleKeys.notification_type_general.tr(),
+                          ),
                         ),
                         DropdownMenuItem(
-                          value: 'offer',
+                          value: NotificationType.offer.name,
                           child: Text(LocaleKeys.notification_type_offer.tr()),
                         ),
                       ],

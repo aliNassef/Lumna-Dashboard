@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../exceptions/error_mapper.dart';
 import '../../exceptions/server_exception.dart';
 
 abstract interface class StorageService {
@@ -57,10 +58,8 @@ class SupabaseStorageService implements StorageService {
           );
 
       return _supabaseClient.storage.from(bucket).getPublicUrl(objectPath);
-    } on StorageException catch (e) {
-      throw ServerException('${e.message} (code: ${e.error}}');
     } catch (e) {
-      throw ServerException('Unexpected storage error: $e');
+      throw ServerException(e.toMessage());
     }
   }
 

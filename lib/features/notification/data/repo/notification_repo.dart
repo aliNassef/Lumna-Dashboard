@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/exceptions/error_mapper.dart';
 import '../../../../core/exceptions/failure.dart';
-import '../../../../core/exceptions/server_exception.dart';
 import '../datasource/notification_remote_datasource.dart';
 import '../models/notification_model.dart';
 import '../models/send_notification_request.dart';
@@ -27,8 +27,8 @@ class NotificationRepoImpl implements NotificationRepo {
     try {
       await _remoteDataSource.sendNotification(request);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -38,8 +38,8 @@ class NotificationRepoImpl implements NotificationRepo {
     try {
       final notifications = await _remoteDataSource.fetchNotificationHistory();
       return Right(notifications);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -48,8 +48,8 @@ class NotificationRepoImpl implements NotificationRepo {
     try {
       await _remoteDataSource.markAsRead(notificationId);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
   
@@ -58,8 +58,8 @@ class NotificationRepoImpl implements NotificationRepo {
     try {
       final count = await _remoteDataSource.getUnReadedCount();
       return Right(count);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 }

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import '../datasource/orders_remote_datasource.dart';
 
+import '../../../../core/exceptions/error_mapper.dart';
 import '../../../../core/exceptions/failure.dart';
-import '../../../../core/exceptions/server_exception.dart';
 import '../../../../core/extensions/order_status.dart';
 import '../models/order_details_model.dart';
 import '../models/order_model.dart';
@@ -28,8 +28,8 @@ class OrdersRepoImpl implements OrdersRepo {
     try {
       final orders = await _remoteDataSource.getRecentOrders();
       return Right(orders);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -40,7 +40,7 @@ class OrdersRepoImpl implements OrdersRepo {
         yield Right(orders);
       }
     } catch (e) {
-      yield Left(Failure(errMessage: e.toString()));
+      yield Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -51,10 +51,8 @@ class OrdersRepoImpl implements OrdersRepo {
     try {
       final order = await _remoteDataSource.getOrderDetails(orderId);
       return Right(order);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
     } catch (e) {
-      return Left(Failure(errMessage: e.toString()));
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
@@ -66,8 +64,8 @@ class OrdersRepoImpl implements OrdersRepo {
     try {
       await _remoteDataSource.updateOrderStatus(orderId, status);
       return const Right(null);
-    } on ServerException catch (e) {
-      return Left(Failure(errMessage: e.message));
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
     }
   }
 }

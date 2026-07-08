@@ -1,5 +1,6 @@
 import 'auth_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../exceptions/error_mapper.dart';
 import '../../exceptions/server_exception.dart';
 
 class SupabaseAuthImpl implements AuthService {
@@ -19,7 +20,7 @@ class SupabaseAuthImpl implements AuthService {
         data: data,
       );
     } catch (e) {
-      throw ServerException(e.toString());
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -34,7 +35,7 @@ class SupabaseAuthImpl implements AuthService {
         password: password,
       );
     } catch (e) {
-      throw ServerException(e.toString());
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -47,7 +48,7 @@ class SupabaseAuthImpl implements AuthService {
         authScreenLaunchMode: LaunchMode.externalApplication,
       );
     } catch (e) {
-      throw ServerException(e.toString());
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -56,7 +57,7 @@ class SupabaseAuthImpl implements AuthService {
     try {
       return await _supabase.auth.signOut();
     } catch (e) {
-      throw ServerException(e.toString());
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -68,7 +69,7 @@ class SupabaseAuthImpl implements AuthService {
         redirectTo: 'io.supabase.ecommerce://reset-callback',
       );
     } catch (e) {
-      throw ServerException(e.toString());
+      throw ServerException(e.toMessage());
     }
   }
 
@@ -82,7 +83,7 @@ class SupabaseAuthImpl implements AuthService {
         UserAttributes(password: password),
       );
     } catch (e) {
-      throw ServerException(e.toString());
+      throw ServerException(e.toMessage());
     }
   }
 }
