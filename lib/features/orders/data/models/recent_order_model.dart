@@ -5,6 +5,7 @@ import '../../../../core/extensions/order_status.dart';
 
 class RecentOrderModel extends Equatable {
   final String id;
+  final int orderNumber;
   final String customerName;
   final String? customerImage;
   final DateTime date;
@@ -12,6 +13,7 @@ class RecentOrderModel extends Equatable {
 
   const RecentOrderModel({
     required this.id,
+    required this.orderNumber,
     required this.customerName,
     this.customerImage,
     required this.date,
@@ -25,6 +27,7 @@ class RecentOrderModel extends Equatable {
 
     return RecentOrderModel(
       id: map['id'],
+      orderNumber: map['order_no'],
       customerName: customerName == null || customerName.trim().isEmpty
           ? LocaleKeys.unknown_customer.tr()
           : customerName,
@@ -41,6 +44,7 @@ class RecentOrderModel extends Equatable {
 final List<RecentOrderModel> dummyRecentOrders = [
   RecentOrderModel(
     id: 'ORD-001',
+    orderNumber: 1,
     customerName: 'Ahmed Mansour',
     customerImage: 'https://randomuser.me/api/portraits/men/1.jpg',
     date: DateTime.now().subtract(const Duration(hours: 2)),
@@ -48,6 +52,7 @@ final List<RecentOrderModel> dummyRecentOrders = [
   ),
   RecentOrderModel(
     id: 'ORD-002',
+    orderNumber: 1,
     customerName: 'Sara Mahmoud',
     customerImage: 'https://randomuser.me/api/portraits/women/2.jpg',
     date: DateTime.now().subtract(const Duration(hours: 5)),
@@ -59,9 +64,11 @@ final List<RecentOrderModel> dummyRecentOrders = [
     customerImage: null,
     date: DateTime.now().subtract(const Duration(days: 1)),
     status: OrderStatus.processing,
+    orderNumber: 1,
   ),
   RecentOrderModel(
     id: 'ORD-004',
+    orderNumber: 1,
     customerName: 'Nour El-Din',
     customerImage: 'https://randomuser.me/api/portraits/men/4.jpg',
     date: DateTime.now().subtract(const Duration(days: 1, hours: 3)),
@@ -69,6 +76,7 @@ final List<RecentOrderModel> dummyRecentOrders = [
   ),
   RecentOrderModel(
     id: 'ORD-005',
+    orderNumber: 1,
     customerName: 'Laila Hany',
     customerImage: 'https://randomuser.me/api/portraits/women/5.jpg',
     date: DateTime.now().subtract(const Duration(days: 2)),
@@ -76,13 +84,15 @@ final List<RecentOrderModel> dummyRecentOrders = [
   ),
   RecentOrderModel(
     id: 'ORD-006',
-    customerName: 'Omar Samir',
+    customerName: 'Omar Khaled',
+    orderNumber: 1,
     customerImage: null,
     date: DateTime.now().subtract(const Duration(days: 2, hours: 6)),
     status: OrderStatus.cancelled,
   ),
   RecentOrderModel(
     id: 'ORD-007',
+    orderNumber: 1,
     customerName: 'Mariam Ahmed',
     customerImage: 'https://randomuser.me/api/portraits/women/7.jpg',
     date: DateTime.now().subtract(const Duration(days: 3)),
@@ -90,6 +100,7 @@ final List<RecentOrderModel> dummyRecentOrders = [
   ),
   RecentOrderModel(
     id: 'ORD-008',
+    orderNumber: 1,
     customerName: 'Khaled Tamer',
     customerImage: 'https://randomuser.me/api/portraits/men/8.jpg',
     date: DateTime.now().subtract(const Duration(days: 3, hours: 2)),

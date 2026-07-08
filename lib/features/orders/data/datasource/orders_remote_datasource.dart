@@ -22,7 +22,8 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   Future<List<RecentOrderModel>> getRecentOrders() async {
     final response = await _database.get(
       path: Endpoints.orders,
-      columns: 'id, created_at, status, profiles(full_name, avatar_url)',
+      columns:
+          'id, order_no, created_at, status, profiles(full_name, avatar_url)',
       orderBy: 'created_at',
       ascending: false,
       limit: 5,
