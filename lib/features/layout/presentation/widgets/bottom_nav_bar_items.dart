@@ -7,18 +7,15 @@ import '../../../../core/utils/spacer.dart';
 import '../nav_bar_item_data.dart';
 import 'bottom_nav_bar_item.dart';
 
-class BottomNavBarItems extends StatefulWidget {
+class BottomNavBarItems extends StatelessWidget {
   const BottomNavBarItems({
     super.key,
+    required this.currentIndex,
     this.onChanged,
   });
+  final int currentIndex;
   final ValueChanged<int>? onChanged;
-  @override
-  State<BottomNavBarItems> createState() => _BottomNavBarItemsState();
-}
 
-class _BottomNavBarItemsState extends State<BottomNavBarItems> {
-  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,13 +37,10 @@ class _BottomNavBarItemsState extends State<BottomNavBarItems> {
           4,
           (index) => Expanded(
             child: GestureDetector(
-              onTap: () {
-                setState(() => _currentIndex = index);
-                widget.onChanged?.call(index);
-              },
+              onTap: () => onChanged?.call(index),
               child: BottomNavItem(
                 data: navBarItems[index],
-                isActive: index == _currentIndex,
+                isActive: index == currentIndex,
               ),
             ),
           ),

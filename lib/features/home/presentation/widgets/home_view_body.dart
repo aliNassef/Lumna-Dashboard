@@ -15,6 +15,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/extensions/padding_extension.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/utils/spacer.dart';
+import '../../../layout/presentation/controller/layout_cubit/layout_cubit.dart';
 import '../../../orders/data/models/recent_order_model.dart';
 import '../../../orders/presentation/controller/orders_cubit/orders_cubit.dart';
 import 'recent_orders_table.dart';
@@ -69,6 +70,7 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: SectionTitleAndViewAllButton(
             sectionTitle: LocaleKeys.dashboard_recent_orders.tr(),
+            onPressed: () => context.read<LayoutCubit>().changeIndex(2),
           ).withHorizontalPadding(Spacing.extraLarge),
         ),
         const SliverGap(Spacing.extraLarge),
