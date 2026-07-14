@@ -8,5 +8,5 @@ abstract class AppAssets {
 
 abstract class AppNetworkImage {
   static const String dummy =
-      'https://tse4.mm.bing.net/th/id/OIP.BHqqd9lDrLR3c3S8FgSkRQHaHk?rs=1&pid=ImgDetMain&o=7&rm=3';
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1-3lYDW2oR7QNGu4d_xEO-ruTkuTLXKZrpxzJQZozrhBjMon9GnduC7o&s=10';
 }
