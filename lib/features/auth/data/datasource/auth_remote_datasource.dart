@@ -14,6 +14,8 @@ abstract interface class AuthRemoteDataSource {
   Future<void> signInWithGoogle();
   Future<void> signUp(SignupRequest request);
   Future<void> signOut();
+  Future<void> resetPassword(String email);
+  Future<void> updatePassword(String password);
   Future<bool> isCurrentUserAdmin();
   User? getCurrentUser();
 }
@@ -74,6 +76,24 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> signOut() async {
     try {
       await _authService.signOut();
+    } catch (e) {
+      throw ServerException(e.toMessage());
+    }
+  }
+
+  @override
+  Future<void> resetPassword(String email) async {
+    try {
+      await _authService.resetPassword(email);
+    } catch (e) {
+      throw ServerException(e.toMessage());
+    }
+  }
+
+  @override
+  Future<void> updatePassword(String password) async {
+    try {
+      await _authService.updatePassword(password);
     } catch (e) {
       throw ServerException(e.toMessage());
     }

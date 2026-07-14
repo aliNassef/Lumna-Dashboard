@@ -75,6 +75,12 @@ Future<void> _setupAuthFeature() async {
     ),
   );
 
+  injector.registerFactory(
+    () => ForgotPasswordCubit(
+      authRepo: injector<AuthRepo>(),
+    ),
+  );
+
   injector.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
       injector<AuthRemoteDataSource>(),

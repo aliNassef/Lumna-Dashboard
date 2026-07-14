@@ -11,6 +11,8 @@ abstract interface class AuthRepo {
   Future<Either<Failure, void>> signInWithGoogle();
   Future<Either<Failure, void>> signUp(SignupRequest request);
   Future<Either<Failure, void>> signOut();
+  Future<Either<Failure, void>> resetPassword(String email);
+  Future<Either<Failure, void>> updatePassword(String password);
   Future<Either<Failure, bool>> isCurrentUserAdmin();
   User? getCurrentUser();
 }
@@ -48,6 +50,26 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, void>> signOut() async {
     try {
       await _remoteDataSource.signOut();
+      return const Right(null);
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> resetPassword(String email) async {
+    try {
+      await _remoteDataSource.resetPassword(email);
+      return const Right(null);
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updatePassword(String password) async {
+    try {
+      await _remoteDataSource.updatePassword(password);
       return const Right(null);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));

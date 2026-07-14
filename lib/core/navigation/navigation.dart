@@ -6,6 +6,8 @@ export 'navigator_key.dart';
 
 export '../../features/auth/presentation/views/login_view.dart';
 export '../../features/auth/presentation/views/signup_view.dart';
+export '../../features/auth/presentation/views/forgot_password_view.dart';
+export '../../features/auth/presentation/views/update_password_view.dart';
 export '../../features/category/presentation/views/manage_category_view.dart';
 export '../../features/layout/presentation/views/layout_view.dart';
 export '../../features/offers/presentation/views/manage_offers_view.dart';

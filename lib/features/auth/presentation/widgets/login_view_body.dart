@@ -91,7 +91,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           Align(
             alignment: isArabic ? Alignment.centerLeft : Alignment.centerRight,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () => context.pushNamed(
+                ForgotPasswordView.routeName,
+                arguments: const NavArgs(animation: NavAnimation.fade),
+              ),
               child: Text(
                 LocaleKeys.auth_forgot_password.tr(),
                 style: context.typography.medium14.copyWith(

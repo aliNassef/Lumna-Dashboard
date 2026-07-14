@@ -23,6 +23,12 @@ class AppRouter {
       case LoginView.routeName:
         page = const LoginView();
         break;
+      case ForgotPasswordView.routeName:
+        page = const ForgotPasswordView();
+        break;
+      case UpdatePasswordView.routeName:
+        page = const UpdatePasswordView();
+        break;
       case LayoutView.routeName:
         page = const LayoutView();
         break;
