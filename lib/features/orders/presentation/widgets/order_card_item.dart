@@ -88,6 +88,25 @@ class OrderCardItem extends StatelessWidget {
                     '${order.itemsCount} ${LocaleKeys.items_label.tr()}',
                     style: context.typography.regular14,
                   ),
+                  const Gap(4),
+                  // todo : need to handle order review style many icons and if not can be rate
+                  order.rating == null
+                      ? const SizedBox.shrink()
+                      : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.star_rounded,
+                              size: 18,
+                              color: Colors.amber,
+                            ),
+                            const Gap(2),
+                            Text(
+                              '${order.rating}',
+                              style: context.typography.regular14,
+                            ),
+                          ],
+                        ),
                 ],
               ),
             ],

@@ -14,6 +14,7 @@ class OrderModel extends Equatable {
   final num totalAmount;
   final int itemsCount;
   final int orderNumber;
+  final int? rating;
 
   const OrderModel({
     required this.id,
@@ -25,11 +26,13 @@ class OrderModel extends Equatable {
     required this.customerImage,
     required this.totalAmount,
     required this.itemsCount,
+    this.rating,
   });
 
   factory OrderModel.fromMap(Map<String, dynamic> map) {
     final profile = map['profiles'] as Map<String, dynamic>?;
     final orderItems = map['order_items'] as List<dynamic>?;
+    final rating = _resolveRating(map['order_reviews']);
     final rawStatus = (map['status'] as String? ?? '').trim().toLowerCase();
 
     return OrderModel(
@@ -44,7 +47,21 @@ class OrderModel extends Equatable {
       customerImage: profile?['avatar_url'] as String?,
       totalAmount: (map['total_amount'] as num?) ?? 0,
       itemsCount: orderItems?.length ?? 0,
+      rating: rating,
     );
+  }
+
+  /// `order_reviews` embeds as a single object (one-to-one, since `order_id`
+  /// is unique) or `null`, but tolerate a list shape too in case the relation
+  /// is ever exposed as one-to-many.
+  static int? _resolveRating(dynamic reviews) {
+    if (reviews is Map<String, dynamic>) {
+      return reviews['rating'] as int?;
+    }
+    if (reviews is List && reviews.isNotEmpty) {
+      return (reviews.first as Map<String, dynamic>)['rating'] as int?;
+    }
+    return null;
   }
 
   static String _resolveCustomerName(Map<String, dynamic>? profile) {
@@ -64,6 +81,7 @@ class OrderModel extends Equatable {
     String? customerImage,
     num? totalAmount,
     int? itemsCount,
+    int? rating,
   }) {
     return OrderModel(
       id: id ?? this.id,
@@ -75,6 +93,7 @@ class OrderModel extends Equatable {
       customerImage: customerImage ?? this.customerImage,
       totalAmount: totalAmount ?? this.totalAmount,
       itemsCount: itemsCount ?? this.itemsCount,
+      rating: rating ?? this.rating,
     );
   }
 
@@ -88,6 +107,7 @@ class OrderModel extends Equatable {
     customerImage,
     totalAmount,
     itemsCount,
+    rating,
   ];
 }
 
@@ -102,6 +122,7 @@ final List<OrderModel> dummyOrders = [
     customerImage: null,
     totalAmount: 100,
     itemsCount: 2,
+    rating: 5,
   ),
   OrderModel(
     orderNumber: 2,
@@ -113,6 +134,7 @@ final List<OrderModel> dummyOrders = [
     customerImage: null,
     totalAmount: 100,
     itemsCount: 2,
+    rating: 3,
   ),
   OrderModel(
     orderNumber: 2,

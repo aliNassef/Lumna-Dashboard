@@ -10,6 +10,7 @@ abstract class Endpoints {
   static const String orders = 'orders';
   static const String orderItems = 'order_items';
   static const String placeOrder = 'place_order';
+  static const String orderReviews = 'order_reviews';
   static const String reviews = 'reviews';
 
   static const String productsWithStats = 'products_with_stats';
