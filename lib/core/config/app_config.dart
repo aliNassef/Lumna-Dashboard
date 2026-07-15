@@ -9,7 +9,7 @@ import 'package:lumna_admin/env/env.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart'
     show MapboxOptions;
 import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:intl/date_symbol_data_local.dart';
 import '../../firebase_options.dart';
 import '../di/injection_container.dart';
 import '../helper/cache_helper.dart';
@@ -53,6 +53,7 @@ class AppConfig {
       ),
     );
     await setupLocator();
+    await initializeDateFormatting();
     await ScreenUtil.ensureScreenSize();
     await CacheHelper.init();
     await injector<NotificationService>().init();
