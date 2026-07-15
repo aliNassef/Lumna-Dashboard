@@ -212,6 +212,8 @@
   "stock_label": "المخزون: ",
   "products_count_label": "المنتجات",
   "placed_on_prefix": "تم الطلب في ",
+  "today": "اليوم",
+  "currency": "ج.م",
   "not_available": "غير متوفر",
   "empty_orders_title": "لا توجد طلبات",
   "empty_orders_subtitle": "لا توجد طلبات حديثة للعرض.",

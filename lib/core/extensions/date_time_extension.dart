@@ -1,4 +1,6 @@
-import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import '../translation/locale_keys.g.dart';
 
 extension DateTimeExtension on DateTime {
   String get monthDayYearText {
@@ -16,7 +18,7 @@ extension DateTimeExtension on DateTime {
 
     final time = DateFormat('hh:mm a').format(localDate);
     if (isToday) {
-      return 'Today, $time';
+      return '${LocaleKeys.today.tr()}, $time';
     }
 
     return DateFormat('dd MMM, hh:mm a').format(localDate);

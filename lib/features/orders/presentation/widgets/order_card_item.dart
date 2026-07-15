@@ -1,14 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:lumna_admin/core/utils/spacer.dart';
 import '../../../../core/extensions/order_status.dart';
 import '../../../../core/extensions/date_time_extension.dart';
+import '../../../../core/extensions/num_extension.dart';
 import '../../../../core/navigation/navigation.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/color_extensions.dart';
 
 import '../../../../core/extensions/typography_extension.dart';
+import '../../../../core/widgets/custom_rate_bar.dart';
 import '../../data/models/order_model.dart';
 import '../controller/orders_cubit/orders_cubit.dart';
 import '../views/order_details_view.dart';
@@ -79,7 +83,7 @@ class OrderCardItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '\$${order.totalAmount}',
+                    order.totalAmount.asPrice,
                     style: context.typography.bold24.copyWith(
                       color: context.colors.primary,
                     ),
@@ -88,24 +92,13 @@ class OrderCardItem extends StatelessWidget {
                     '${order.itemsCount} ${LocaleKeys.items_label.tr()}',
                     style: context.typography.regular14,
                   ),
-                  const Gap(4),
-                  // todo : need to handle order review style many icons and if not can be rate
+                  const Gap(Spacing.large),
                   order.rating == null
                       ? const SizedBox.shrink()
-                      : Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.star_rounded,
-                              size: 18,
-                              color: Colors.amber,
-                            ),
-                            const Gap(2),
-                            Text(
-                              '${order.rating}',
-                              style: context.typography.regular14,
-                            ),
-                          ],
+                      : CustomRateBar(
+                          readOnly: true,
+                          size: 14,
+                          rate: order.rating!.toDouble(),
                         ),
                 ],
               ),
@@ -154,26 +147,27 @@ class OrderCardItem extends StatelessWidget {
           const Gap(24),
 
           // Action Buttons
-          Container(
-            decoration: BoxDecoration(
-              color: context.colors.surface,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    _goToOrderDetails(context);
-                  },
-                  child: Text(
+          TextButton(
+            onPressed: () {
+              _goToOrderDetails(context);
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 8.h),
+              decoration: BoxDecoration(
+                color: context.colors.surface,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
                     LocaleKeys.view_order.tr(),
                     style: context.typography.semiBold16.copyWith(
                       color: context.colors.primary,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

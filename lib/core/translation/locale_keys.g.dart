@@ -282,5 +282,7 @@ abstract class  LocaleKeys {
   static const selected_count = 'selected_count';
   static const notification_order = 'notification_order';
   static const notification_order_body = 'notification_order_body';
+  static const today = 'today';
+  static const currency = 'currency';
 
 }

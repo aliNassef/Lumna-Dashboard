@@ -206,6 +206,8 @@
   "stock_label": "Stock: ",
   "products_count_label": "Products",
   "placed_on_prefix": "Placed on  ",
+  "today": "Today",
+  "currency": "EGP",
   "not_available": "Not available",
   "empty_orders_title": "Empty Orders",
   "empty_orders_subtitle": "No recent orders to display.",

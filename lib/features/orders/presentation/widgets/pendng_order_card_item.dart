@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/extensions/date_time_extension.dart';
+import '../../../../core/extensions/num_extension.dart';
 import '../../../../core/extensions/order_status.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../data/models/order_model.dart';
@@ -83,7 +84,7 @@ class PendingOrderCardItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '\$${order.totalAmount}',
+                    order.totalAmount.asPrice,
                     style: context.typography.bold24.copyWith(
                       color: context.colors.primary,
                     ),
