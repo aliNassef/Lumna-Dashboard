@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/extensions/strings_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/utils/shape.dart';
 import '../../../../core/utils/spacer.dart';
@@ -74,7 +75,8 @@ class CategoryCard extends StatelessWidget {
                 ),
                 const Gap(Spacing.medium),
                 Text(
-                  '${category.productCount} ${LocaleKeys.products_count_label.tr()}',
+                  '${category.productCount} ${LocaleKeys.products_count_label.tr()}'
+                      .localizeDigits,
                   style: context.typography.bold14.copyWith(
                     color: context.colors.primary,
                   ),

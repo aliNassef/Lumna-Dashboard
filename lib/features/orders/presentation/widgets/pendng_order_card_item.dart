@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import '../../../../core/extensions/date_time_extension.dart';
 import '../../../../core/extensions/num_extension.dart';
 import '../../../../core/extensions/order_status.dart';
+import '../../../../core/extensions/strings_extensions.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../data/models/order_model.dart';
 import '../../../../core/extensions/color_extensions.dart';
@@ -90,7 +91,7 @@ class PendingOrderCardItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${order.itemsCount} ${LocaleKeys.items.tr()}',
+                    '${order.itemsCount} ${LocaleKeys.items.tr()}'.localizeDigits,
                     style: context.typography.regular14,
                   ),
                 ],

@@ -7,6 +7,7 @@ import 'package:lumna_admin/core/utils/spacer.dart';
 import '../../../../core/extensions/order_status.dart';
 import '../../../../core/extensions/date_time_extension.dart';
 import '../../../../core/extensions/num_extension.dart';
+import '../../../../core/extensions/strings_extensions.dart';
 import '../../../../core/navigation/navigation.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/color_extensions.dart';
@@ -89,7 +90,8 @@ class OrderCardItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${order.itemsCount} ${LocaleKeys.items_label.tr()}',
+                    '${order.itemsCount} ${LocaleKeys.items_label.tr()}'
+                        .localizeDigits,
                     style: context.typography.regular14,
                   ),
                   const Gap(Spacing.large),

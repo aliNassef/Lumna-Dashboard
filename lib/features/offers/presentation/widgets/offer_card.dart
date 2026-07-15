@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/extensions/date_time_extension.dart';
+import '../../../../core/extensions/strings_extensions.dart';
 import '../../../../core/extensions/typography_extension.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/utils/shape.dart';
@@ -58,7 +59,8 @@ class OfferCard extends StatelessWidget {
           Text(productName, style: context.typography.medium16),
           const Gap(Spacing.medium),
           Text(
-            '${offer.discountPercent.toInt()}% ${LocaleKeys.offer_discount.tr()}',
+            '${offer.discountPercent.toInt()}% ${LocaleKeys.offer_discount.tr()}'
+                .localizeDigits,
             style: context.typography.bold18.copyWith(
               color: context.colors.primary,
             ),

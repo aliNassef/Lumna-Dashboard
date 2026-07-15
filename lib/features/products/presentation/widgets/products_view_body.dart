@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/padding_extension.dart';
+import '../../../../core/extensions/strings_extensions.dart';
 import '../../../../core/utils/spacer.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
 import '../../../../core/widgets/custom_search_bar.dart';
@@ -40,7 +41,7 @@ class ProductsViewBody extends StatelessWidget {
                 ),
               ],
               title: Text(
-                '$totalItems ${LocaleKeys.total_items_label.tr()}',
+                '$totalItems ${LocaleKeys.total_items_label.tr()}'.localizeDigits,
                 style: context.typography.bold24.copyWith(
                   color: context.colors.primary,
                 ),

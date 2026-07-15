@@ -21,38 +21,33 @@ class OrderDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: ordersCubit..getOrderDetails(orderId),
-      // create: (context) => injector<OrdersCubit>()..getOrderDetails(orderId),
       child: Scaffold(
-        body: Builder(
-          builder: (context) {
-            return SafeArea(
-              child: BlocBuilder<OrdersCubit, OrderState>(
-                buildWhen: (previous, current) =>
-                    current.status.isSuccessOrderDetails ||
-                    current.status.isFailureOrderDetails ||
-                    current.status.isLoadingOrderDetails,
-                builder: (context, state) {
-                  return switch (state.status) {
-                    OrderStates.loadingGetOrderDetails => Skeletonizer(
-                      enabled: true,
-                      child: OrderDetailsViewBody(
-                        orderDetailsModel: dummyOrderDetails,
-                      ),
-                    ),
+        body: SafeArea(
+          child: BlocBuilder<OrdersCubit, OrderState>(
+            buildWhen: (previous, current) =>
+                current.status.isSuccessOrderDetails ||
+                current.status.isFailureOrderDetails ||
+                current.status.isLoadingOrderDetails,
+            builder: (context, state) {
+              return switch (state.status) {
+                OrderStates.loadingGetOrderDetails => Skeletonizer(
+                  enabled: true,
+                  child: OrderDetailsViewBody(
+                    orderDetailsModel: dummyOrderDetails,
+                  ),
+                ),
 
-                    OrderStates.successGetOrderDetails => OrderDetailsViewBody(
-                      orderDetailsModel: state.orderDetails!,
-                    ),
+                OrderStates.successGetOrderDetails => OrderDetailsViewBody(
+                  orderDetailsModel: state.orderDetails!,
+                ),
 
-                    OrderStates.failureGetOrderDetails => CustomFailureWidget(
-                      failure: state.failure!,
-                    ),
-                    _ => const SizedBox.shrink(),
-                  };
-                },
-              ),
-            );
-          },
+                OrderStates.failureGetOrderDetails => CustomFailureWidget(
+                  failure: state.failure!,
+                ),
+                _ => const SizedBox.shrink(),
+              };
+            },
+          ),
         ),
       ),
     );

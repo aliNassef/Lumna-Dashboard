@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../../core/extensions/strings_extensions.dart';
+
 class DashboardStatsModel extends Equatable {
   final double totalSales;
   final double salesGrowthPercentage;
@@ -26,10 +28,12 @@ class DashboardStatsModel extends Equatable {
   }
 
   String get formattedSalesGrowth =>
-      '${salesGrowthPercentage >= 0 ? '+' : ''}${salesGrowthPercentage.toStringAsFixed(1)}%';
+      '${salesGrowthPercentage >= 0 ? '+' : ''}${salesGrowthPercentage.toStringAsFixed(1)}%'
+          .localizeDigits;
 
   String get formattedOrdersGrowth =>
-      '${ordersGrowthPercentage >= 0 ? '+' : ''}${ordersGrowthPercentage.toStringAsFixed(1)}%';
+      '${ordersGrowthPercentage >= 0 ? '+' : ''}${ordersGrowthPercentage.toStringAsFixed(1)}%'
+          .localizeDigits;
 
   @override
   List<Object?> get props => [
