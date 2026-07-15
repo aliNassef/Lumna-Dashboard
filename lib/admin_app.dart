@@ -17,6 +17,7 @@ class AdminApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Intl.defaultLocale = context.locale.languageCode;
     return ScreenUtilInit(
       designSize: AppConfig.appDesign,
       minTextAdapt: true,

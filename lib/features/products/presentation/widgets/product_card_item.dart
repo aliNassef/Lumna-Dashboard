@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/translation/locale_keys.g.dart';
 import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/extensions/num_extension.dart';
 import '../../../../core/navigation/navigation.dart';
 import '../../data/models/product_args.dart';
 import '../controller/product_cubit/product_cubit.dart';
@@ -97,7 +98,7 @@ class ProductCardItem extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '\$${displayPrice.toString()}',
+                          displayPrice.asPrice,
                           style: context.typography.bold18.copyWith(
                             color: context.colors.primary,
                           ),

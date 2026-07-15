@@ -21,7 +21,7 @@ class CardStatsModel extends Equatable {
 final List<CardStatsModel> dummyCardStats = [
   const CardStatsModel(
     title: 'Total Sales',
-    amount: '\$12,450.00',
+    amount: '12,450.00 EGP',
     percentage: '+15.5%',
     icon: Icons.trending_up,
   ),
@@ -39,7 +39,7 @@ final List<CardStatsModel> dummyCardStats = [
   ),
   const CardStatsModel(
     title: 'Average Order Value',
-    amount: '\$96.50',
+    amount: '96.50 EGP',
     percentage: '+3.1%',
     icon: Icons.receipt,
   ),

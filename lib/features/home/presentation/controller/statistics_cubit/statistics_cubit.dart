@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/exceptions/failure.dart';
+import '../../../../../core/extensions/num_extension.dart';
 import '../../../../../core/translation/locale_keys.g.dart';
 import '../../../data/models/card_stats_model.dart';
 import '../../../data/repo/statistics_repo.dart';
@@ -26,7 +27,7 @@ class StatisticsCubit extends Cubit<StatisticsState> {
         final stats = [
           CardStatsModel(
             title: LocaleKeys.total_sales,
-            amount: summary.totalSales.toStringAsFixed(2),
+            amount: summary.totalSales.asPrice,
             percentage: summary.formattedSalesGrowth,
             icon: Icons.account_balance_wallet_outlined,
           ),
