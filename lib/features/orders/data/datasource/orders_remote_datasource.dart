@@ -29,7 +29,7 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
       ascending: false,
       limit: 5,
     );
-    final recentOrders = (response as List)
+    final recentOrders = response
         .map((e) => RecentOrderModel.fromMap(e))
         .toList();
     return recentOrders;
@@ -50,6 +50,10 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
         path: Endpoints.profiles,
         primaryKey: ['id'],
       ),
+      _database.stream(
+        path: Endpoints.orderReviews,
+        primaryKey: ['id'],
+      ),
     ]).debounceTime(const Duration(milliseconds: 300)).asyncMap((_) {
       return _fetchOrders();
     });
@@ -59,7 +63,7 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
     final response = await _database.get(
       path: Endpoints.orders,
       columns:
-          'id, order_no, created_at, status, total_amount, profiles(full_name, email, avatar_url), order_items(id)',
+          'id, order_no, created_at, status, total_amount, profiles(full_name, email, avatar_url), order_items(id), order_reviews(user_id, rating)',
       orderBy: 'created_at',
       ascending: false,
     );
