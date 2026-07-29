@@ -7,6 +7,7 @@ import '../models/product_model.dart';
 
 abstract interface class ProductsRepo {
   Future<Either<Failure, List<ProductModel>>> getProducts();
+  Future<Either<Failure, int>> getProductTotalSales(String id);
   Future<Either<Failure, void>> addProduct(ProductModel product);
   Future<Either<Failure, void>> updateProduct(ProductModel product);
   Future<Either<Failure, void>> deleteProduct(String id);
@@ -22,6 +23,16 @@ class ProductsRepoImpl implements ProductsRepo {
     try {
       final products = await _remoteDataSource.getProducts();
       return Right(products);
+    } catch (e) {
+      return Left(Failure(errMessage: e.toMessage()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> getProductTotalSales(String id) async {
+    try {
+      final totalSales = await _remoteDataSource.getProductTotalSales(id);
+      return Right(totalSales);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }

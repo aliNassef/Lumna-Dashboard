@@ -75,15 +75,15 @@ class ProductsViewBody extends StatelessWidget {
                   ),
                 ),
               ],
-              ProductStatus.successProducts ||
-              ProductStatus.initial ||
-              ProductStatus.addProductSuccess ||
-              ProductStatus.updatingProduct ||
-              ProductStatus.updateProductSuccess ||
-              ProductStatus.updateProductFailure ||
-              ProductStatus.deletingProduct ||
-              ProductStatus.deleteProductSuccess ||
-              ProductStatus.deleteProductFailure => [
+              ProductStatus.failureProducts => [
+                SliverToBoxAdapter(
+                  child: CustomFailureWidget(failure: state.failure!),
+                ),
+              ],
+              // Every other status (including ones owned by other screens,
+              // e.g. the edit screen's total-sales fetch) leaves the already
+              // loaded list on screen.
+              _ => [
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: Spacing.extraLarge,
@@ -96,16 +96,6 @@ class ProductsViewBody extends StatelessWidget {
                         const Gap(Spacing.extraLarge),
                     itemCount: state.filteredProducts.length,
                   ),
-                ),
-              ],
-              ProductStatus.failureProducts => [
-                SliverToBoxAdapter(
-                  child: CustomFailureWidget(failure: state.failure!),
-                ),
-              ],
-              _ => const [
-                SliverToBoxAdapter(
-                  child: SizedBox.shrink(),
                 ),
               ],
             },

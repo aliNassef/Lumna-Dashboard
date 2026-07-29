@@ -15,6 +15,9 @@ enum ProductStatus {
   deleteProductSuccess,
   deleteProductFailure,
   uploadingImages,
+  loadingTotalSales,
+  totalSalesSuccess,
+  totalSalesFailure,
 }
 
 extension ProductStatusX on ProductStatus {
@@ -32,6 +35,9 @@ extension ProductStatusX on ProductStatus {
   bool get isDeleteProductSuccess => this == ProductStatus.deleteProductSuccess;
   bool get isDeleteProductFailure => this == ProductStatus.deleteProductFailure;
   bool get isUploadingImages => this == ProductStatus.uploadingImages;
+  bool get isLoadingTotalSales => this == ProductStatus.loadingTotalSales;
+  bool get isTotalSalesSuccess => this == ProductStatus.totalSalesSuccess;
+  bool get isTotalSalesFailure => this == ProductStatus.totalSalesFailure;
 }
 
 class ProductState extends Equatable {
@@ -42,6 +48,7 @@ class ProductState extends Equatable {
   final List<String> retainedImageUrls;
   final bool isActive;
   final String query;
+  final int? totalSales;
   final Failure? failure;
 
   const ProductState({
@@ -52,6 +59,7 @@ class ProductState extends Equatable {
     this.retainedImageUrls = const [],
     this.isActive = true,
     this.query = '',
+    this.totalSales,
     this.failure,
   });
 
@@ -63,8 +71,10 @@ class ProductState extends Equatable {
     List<String>? retainedImageUrls,
     bool? isActive,
     String? query,
+    int? totalSales,
     Failure? failure,
     bool clearFailure = false,
+    bool clearTotalSales = false,
   }) {
     return ProductState(
       status: status ?? this.status,
@@ -74,6 +84,7 @@ class ProductState extends Equatable {
       retainedImageUrls: retainedImageUrls ?? this.retainedImageUrls,
       isActive: isActive ?? this.isActive,
       query: query ?? this.query,
+      totalSales: clearTotalSales ? null : totalSales ?? this.totalSales,
       failure: clearFailure ? null : failure ?? this.failure,
     );
   }
@@ -87,6 +98,7 @@ class ProductState extends Equatable {
     retainedImageUrls,
     isActive,
     query,
+    totalSales,
     failure,
   ];
 }
