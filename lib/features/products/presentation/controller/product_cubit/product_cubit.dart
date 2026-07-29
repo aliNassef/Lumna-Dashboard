@@ -51,6 +51,37 @@ class ProductCubit extends Cubit<ProductState> {
     );
   }
 
+  Future<void> getProductTotalSales(String id) async {
+    emit(
+      state.copyWith(
+        status: ProductStatus.loadingTotalSales,
+        clearTotalSales: true,
+        allProducts: state.allProducts,
+        clearFailure: true,
+      ),
+    );
+
+    final totalSalesOrFailure = await productsRepo.getProductTotalSales(id);
+    totalSalesOrFailure.fold(
+      (failure) => emit(
+        state.copyWith(
+          status: ProductStatus.totalSalesFailure,
+
+          failure: failure,
+          allProducts: state.allProducts,
+        ),
+      ),
+      (totalSales) => emit(
+        state.copyWith(
+          status: ProductStatus.totalSalesSuccess,
+          totalSales: totalSales,
+          allProducts: state.allProducts,
+          clearFailure: true,
+        ),
+      ),
+    );
+  }
+
   void searchProducts(String query) {
     emit(
       state.copyWith(

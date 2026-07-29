@@ -56,6 +56,7 @@ class _EditProductViewBodyState extends State<EditProductViewBody> {
     categoryId = widget.product.categoryId;
     productCubit = context.read<ProductCubit>();
     productCubit.initializeForEdit(widget.product);
+    productCubit.getProductTotalSales(widget.product.id!);
   }
 
   @override
