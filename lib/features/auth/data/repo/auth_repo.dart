@@ -7,10 +7,10 @@ import '../datasource/auth_remote_datasource.dart';
 import '../models/signup_request.dart';
 
 abstract interface class AuthRepo {
-  Future<Either<Failure, void>> signIn(String email, String password);
-  Future<Either<Failure, void>> signInWithGoogle();
-  Future<Either<Failure, void>> signUp(SignupRequest request);
-  Future<Either<Failure, void>> signOut();
+  Future<Either<Failure, Unit>> signIn(String email, String password);
+  Future<Either<Failure, Unit>> signInWithGoogle();
+  Future<Either<Failure, Unit>> signUp(SignupRequest request);
+  Future<Either<Failure, Unit>> signOut();
   Future<Either<Failure, bool>> isCurrentUserAdmin();
   User? getCurrentUser();
 }
@@ -25,30 +25,30 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> signIn(String email, String password) async {
+  Future<Either<Failure, Unit>> signIn(String email, String password) async {
     try {
       await _remoteDataSource.signIn(email, password);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> signInWithGoogle() async {
+  Future<Either<Failure, Unit>> signInWithGoogle() async {
     try {
       await _remoteDataSource.signInWithGoogle();
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> signOut() async {
+  Future<Either<Failure, Unit>> signOut() async {
     try {
       await _remoteDataSource.signOut();
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
@@ -65,10 +65,10 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> signUp(SignupRequest request) async {
+  Future<Either<Failure, Unit>> signUp(SignupRequest request) async {
     try {
       await _remoteDataSource.signUp(request);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }

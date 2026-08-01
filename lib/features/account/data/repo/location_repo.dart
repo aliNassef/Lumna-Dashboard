@@ -15,10 +15,10 @@ class LocationRepoImpl implements LocationRepo {
   final LocationRemoteDataSource _locationRemoteDataSource;
 
   @override
-  Future<Either<Failure, void>> addStoreLocation(LocationModel location) async {
+  Future<Either<Failure, Unit>> addStoreLocation(LocationModel location) async {
     try {
       await _locationRemoteDataSource.addStoreLocation(location);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
