@@ -7,9 +7,9 @@ import '../models/product_model.dart';
 
 abstract interface class ProductsRepo {
   Future<Either<Failure, List<ProductModel>>> getProducts();
-  Future<Either<Failure, void>> addProduct(ProductModel product);
-  Future<Either<Failure, void>> updateProduct(ProductModel product);
-  Future<Either<Failure, void>> deleteProduct(String id);
+  Future<Either<Failure, Unit>> addProduct(ProductModel product);
+  Future<Either<Failure, Unit>> updateProduct(ProductModel product);
+  Future<Either<Failure, Unit>> deleteProduct(String id);
 }
 
 class ProductsRepoImpl implements ProductsRepo {
@@ -28,30 +28,30 @@ class ProductsRepoImpl implements ProductsRepo {
   }
 
   @override
-  Future<Either<Failure, void>> addProduct(ProductModel product) async {
+  Future<Either<Failure, Unit>> addProduct(ProductModel product) async {
     try {
       await _remoteDataSource.addProduct(product);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> updateProduct(ProductModel product) async {
+  Future<Either<Failure, Unit>> updateProduct(ProductModel product) async {
     try {
       await _remoteDataSource.updateProduct(product);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> deleteProduct(String id) async {
+  Future<Either<Failure, Unit>> deleteProduct(String id) async {
     try {
       await _remoteDataSource.deleteProduct(id);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }

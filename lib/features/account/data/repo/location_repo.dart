@@ -6,7 +6,7 @@ import '../datasource/location_remote_datasource.dart';
 import '../models/location_model.dart';
 
 abstract class LocationRepo {
-  Future<Either<Failure, void>> addStoreLocation(LocationModel location);
+  Future<Either<Failure, Unit>> addStoreLocation(LocationModel location);
 }
 
 class LocationRepoImpl implements LocationRepo {
@@ -15,10 +15,10 @@ class LocationRepoImpl implements LocationRepo {
   final LocationRemoteDataSource _locationRemoteDataSource;
 
   @override
-  Future<Either<Failure, void>> addStoreLocation(LocationModel location) async {
+  Future<Either<Failure, Unit>> addStoreLocation(LocationModel location) async {
     try {
       await _locationRemoteDataSource.addStoreLocation(location);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }

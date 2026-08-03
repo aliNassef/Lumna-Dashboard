@@ -7,11 +7,11 @@ import '../models/notification_model.dart';
 import '../models/send_notification_request.dart';
 
 abstract interface class NotificationRepo {
-  Future<Either<Failure, void>> sendNotification(
+  Future<Either<Failure, Unit>> sendNotification(
     SendNotificationRequest request,
   );
   Future<Either<Failure, List<NotificationModel>>> fetchNotificationHistory();
-  Future<Either<Failure, void>> markAsRead(String notificationId);
+  Future<Either<Failure, Unit>> markAsRead(String notificationId);
   Future<Either<Failure, int>> getUnReadedCount();
 }
 
@@ -21,12 +21,12 @@ class NotificationRepoImpl implements NotificationRepo {
   final NotificationRemoteDataSource _remoteDataSource;
 
   @override
-  Future<Either<Failure, void>> sendNotification(
+  Future<Either<Failure, Unit>> sendNotification(
     SendNotificationRequest request,
   ) async {
     try {
       await _remoteDataSource.sendNotification(request);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
@@ -44,10 +44,10 @@ class NotificationRepoImpl implements NotificationRepo {
   }
 
   @override
-  Future<Either<Failure, void>> markAsRead(String notificationId) async {
+  Future<Either<Failure, Unit>> markAsRead(String notificationId) async {
     try {
       await _remoteDataSource.markAsRead(notificationId);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }

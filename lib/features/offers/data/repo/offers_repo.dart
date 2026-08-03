@@ -7,9 +7,9 @@ import '../models/offer_model.dart';
 
 abstract interface class OffersRepo {
   Future<Either<Failure, List<OfferModel>>> getOffers();
-  Future<Either<Failure, void>> addOffer(OfferModel offer);
-  Future<Either<Failure, void>> updateOffer(OfferModel offer);
-  Future<Either<Failure, void>> deleteOffer(String id);
+  Future<Either<Failure, Unit>> addOffer(OfferModel offer);
+  Future<Either<Failure, Unit>> updateOffer(OfferModel offer);
+  Future<Either<Failure, Unit>> deleteOffer(String id);
 }
 
 class OffersRepoImpl implements OffersRepo {
@@ -28,30 +28,30 @@ class OffersRepoImpl implements OffersRepo {
   }
 
   @override
-  Future<Either<Failure, void>> addOffer(OfferModel offer) async {
+  Future<Either<Failure, Unit>> addOffer(OfferModel offer) async {
     try {
       await _remoteDataSource.addOffer(offer);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> updateOffer(OfferModel offer) async {
+  Future<Either<Failure, Unit>> updateOffer(OfferModel offer) async {
     try {
       await _remoteDataSource.updateOffer(offer);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> deleteOffer(String id) async {
+  Future<Either<Failure, Unit>> deleteOffer(String id) async {
     try {
       await _remoteDataSource.deleteOffer(id);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }

@@ -7,7 +7,7 @@ import '../models/account_model.dart';
 
 abstract interface class AccountRepo {
   Future<Either<Failure, AccountModel>> getCurrentProfile();
-  Future<Either<Failure, void>> updateProfile(AccountModel profile);
+  Future<Either<Failure, Unit>> updateProfile(AccountModel profile);
 }
 
 class AccountRepoImpl implements AccountRepo {
@@ -26,10 +26,10 @@ class AccountRepoImpl implements AccountRepo {
   }
 
   @override
-  Future<Either<Failure, void>> updateProfile(AccountModel profile) async {
+  Future<Either<Failure, Unit>> updateProfile(AccountModel profile) async {
     try {
       await _remoteDataSource.updateProfile(profile);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }

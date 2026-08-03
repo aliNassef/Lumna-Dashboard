@@ -12,7 +12,7 @@ abstract interface class OrdersRepo {
   Future<Either<Failure, List<RecentOrderModel>>> getRecentOrders();
   Stream<Either<Failure, List<OrderModel>>> getOrders();
   Future<Either<Failure, OrderDetailsModel>> getOrderDetails(String orderId);
-  Future<Either<Failure, void>> updateOrderStatus(
+  Future<Either<Failure, Unit>> updateOrderStatus(
     String orderId,
     OrderStatus status,
   );
@@ -57,13 +57,13 @@ class OrdersRepoImpl implements OrdersRepo {
   }
 
   @override
-  Future<Either<Failure, void>> updateOrderStatus(
+  Future<Either<Failure, Unit>> updateOrderStatus(
     String orderId,
     OrderStatus status,
   ) async {
     try {
       await _remoteDataSource.updateOrderStatus(orderId, status);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }

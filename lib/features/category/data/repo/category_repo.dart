@@ -7,9 +7,9 @@ import '../model/category_model.dart';
 
 abstract interface class CategoryRepo {
   Future<Either<Failure, List<CategoryModel>>> getCategories();
-  Future<Either<Failure, void>> addCategory(CategoryModel category);
-  Future<Either<Failure, void>> updateCategory(CategoryModel category);
-  Future<Either<Failure, void>> deleteCategory(String slug);
+  Future<Either<Failure, Unit>> addCategory(CategoryModel category);
+  Future<Either<Failure, Unit>> updateCategory(CategoryModel category);
+  Future<Either<Failure, Unit>> deleteCategory(String slug);
 }
 
 class CategoryRepoImpl implements CategoryRepo {
@@ -28,30 +28,30 @@ class CategoryRepoImpl implements CategoryRepo {
   }
 
   @override
-  Future<Either<Failure, void>> addCategory(CategoryModel category) async {
+  Future<Either<Failure, Unit>> addCategory(CategoryModel category) async {
     try {
       await _remoteDataSource.addCategory(category);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> updateCategory(CategoryModel category) async {
+  Future<Either<Failure, Unit>> updateCategory(CategoryModel category) async {
     try {
       await _remoteDataSource.updateCategory(category);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> deleteCategory(String slug) async {
+  Future<Either<Failure, Unit>> deleteCategory(String slug) async {
     try {
       await _remoteDataSource.deleteCategory(slug);
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(Failure(errMessage: e.toMessage()));
     }
